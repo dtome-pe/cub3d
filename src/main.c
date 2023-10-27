@@ -4,9 +4,10 @@
 
 int	main(int argc, char **argv)
 {
-	//t_cub	cub;
+	t_cub	cub;
 
 	if (check_argv(argc, argv))
 		return (1);
-	//scene_parse(&cub, argc, argv);
+	init(&cub, argv);
+	scene_parse(&cub, argc, argv);
 }
