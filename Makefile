@@ -19,7 +19,7 @@ CC			= gcc
 all: make_libft	$(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) inc/cub3D.h
-	$(CC) -g $(CFLAGS) $(OBJ) -o $(NAME) -L$(LIBFT_DIR) -lft
+	$(CC) -g $(CFLAGS) $(OBJ) -o $(NAME) -L$(LIBFT_DIR) -lft -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 $(OBJ_DIR)/%.o : src/%.c inc/cub3D.h Makefile | $(OBJ_DIR)
 	$(CC) -c $(CFLAGS) $< -o $@
