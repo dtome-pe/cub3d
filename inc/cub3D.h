@@ -13,7 +13,7 @@ typedef struct s_cub
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
-	char	*celing_color;
+	char	*ceiling_color;
 	char	*floor_color;
 	char	**map;
 

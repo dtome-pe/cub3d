@@ -8,7 +8,7 @@ void	init(t_cub *cub, char **argv)
 	cub->so_texture = NULL;
 	cub->we_texture = NULL;
 	cub->ea_texture = NULL;
-	cub->celing_color = NULL;
+	cub->ceiling_color = NULL;
 	cub->floor_color = NULL;
 	cub->map = NULL;
 }

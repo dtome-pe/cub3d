@@ -6,7 +6,7 @@ static int	check_correct(t_cub *cub)
 {
 	if (!cub->no_texture || !cub->so_texture
 		|| !cub->we_texture || !cub->ea_texture
-		|| !cub->celing_color || !cub->celing_color
+		|| !cub->ceiling_color || !cub->floor_color
 		|| !cub->map)
 		return (1);
 	else
@@ -29,7 +29,7 @@ static int	get_element(t_cub *cub, char *line)
 	else if (ft_strcmp(line, "EA") == 0 && flag++)
 		cub->ea_texture = ft_strdup(split[1]);
 	else if (ft_strcmp(line, "C") == 0 && flag++)
-		cub->celing_color = ft_strdup(split[1]);
+		cub->ceiling_color = ft_strdup(split[1]);
 	else if (ft_strcmp(line, "F") == 0 && flag++)
 		cub->floor_color = ft_strdup(split[1]);
 	ft_free_m(split);
