@@ -6,7 +6,7 @@
 /*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 09:35:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/10/28 08:46:18 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/10/29 16:30:51 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ char		*ft_get_free(char *tmp);
 
 void		check_malloc_error(void *ptr);
 void		ft_free_m(char **m);
-void		fT_print_strarr(char **arr);
+void		ft_print_m(char **m);
 
 #endif

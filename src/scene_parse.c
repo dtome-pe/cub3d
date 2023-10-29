@@ -1,17 +1,9 @@
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include <fcntl.h>
-
-static int	check_correct(t_cub *cub)
-{
-	if (!cub->no_texture || !cub->so_texture
-		|| !cub->we_texture || !cub->ea_texture
-		|| !cub->ceiling_color || !cub->floor_color
-		|| !cub->map)
-		return (1);
-	else
-		return (0);
-}
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
 static int	get_element(t_cub *cub, char *line)
 {
@@ -20,18 +12,18 @@ static int	get_element(t_cub *cub, char *line)
 
 	flag = 0;
 	split = ft_split(line, ' ');
-	if (ft_strcmp(line, "NO") == 0 && flag++)
-		cub->no_texture = ft_strdup(split[1]);
-	else if (ft_strcmp(line, "SO") == 0 && flag++)
-		cub->so_texture = ft_strdup(split[1]);
-	else if (ft_strcmp(line, "WE" ) == 0 && flag++)
-		cub->we_texture = ft_strdup(split[1]);
-	else if (ft_strcmp(line, "EA") == 0 && flag++)
-		cub->ea_texture = ft_strdup(split[1]);
-	else if (ft_strcmp(line, "C") == 0 && flag++)
-		cub->ceiling_color = ft_strdup(split[1]);
-	else if (ft_strcmp(line, "F") == 0 && flag++)
-		cub->floor_color = ft_strdup(split[1]);
+	if (ft_strcmp(split[0], "NO") == 0 && ++flag)
+		cub->no_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+	else if (ft_strcmp(split[0], "SO") == 0 && ++flag)
+		cub->so_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+	else if (ft_strcmp(split[0], "WE" ) == 0 && ++flag)
+		cub->we_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+	else if (ft_strcmp(split[0], "EA") == 0 && ++flag)
+		cub->ea_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+	else if (ft_strcmp(split[0], "C") == 0 && ++flag)
+		cub->ceiling_color = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+	else if (ft_strcmp(split[0], "F") == 0 && ++flag)
+		cub->floor_color = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
 	ft_free_m(split);
 	if (flag)
 		return (0);
@@ -42,12 +34,21 @@ static int	get_element(t_cub *cub, char *line)
 static int	check_line(t_cub *cub, char *line, int fd)
 {
 	if (ft_strcmp(line, "\n") == 0)
+	{
+		free(line);
 		return (0);
+	}
 	if (get_element(cub, line) == 0)
+	{
+		free(line);
 		return (0);
+	}
+	if (get_map(cub, line, fd) == 0)
+		return (0);
+	return (1);
 }
 
-void	scene_parse(t_cub *cub, int argc, char **argv)
+int	scene_parse(t_cub *cub)
 {
 	int		fd;
 	char	*line;
@@ -57,10 +58,14 @@ void	scene_parse(t_cub *cub, int argc, char **argv)
 	while (line)
 	{
 		if (check_line(cub, line, fd))
+		{
+			ft_printf(1, "Something went wrong!\n");
 			return (1);
+		}
 		line = get_next_line(fd);
 	}
-	if (check_correct(cub))
-		return (1);
+	free(line);
+	close(fd);
+	ft_printf(1, "info bounced ok!\n");
 	return (0);
 }

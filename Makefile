@@ -4,7 +4,7 @@ LIBFT_DIR	= libft
 
 LIBFT 		= $(LIBFT_DIR)/libft.a
 
-SRC			= $(addprefix src/, main.c check_argv.c init.c scene_parse.c)
+SRC			= $(addprefix src/, main.c check_argv.c init.c scene_parse.c map_parse.c map_utils.c free_cub.c)
 
 OBJ			= $(patsubst src/%.c, $(OBJ_DIR)/%.o, $(SRC))
 

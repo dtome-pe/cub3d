@@ -7,7 +7,6 @@ static int	check_extension(char *file)
 	file = ft_strrchr(file, '.');
 	if (!file)
 		return (1);
-	ft_printf(2, "%s - %d\n", file, ft_strlen(file));
 	if (ft_strcmp(file, ".cub"))
 		return (1);
 	return (0);
