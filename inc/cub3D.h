@@ -14,7 +14,7 @@ typedef struct s_cub
 	void	*mlx_ptr;
 	void	*win_ptr;
 
-	/*map parsing*/
+	/*map parsing - checking*/
 	char	*path;
 	char	*no_texture;
 	char	*so_texture;
@@ -28,8 +28,10 @@ typedef struct s_cub
 
 int		check_argv(int argc, char **argv);
 void	init(t_cub *cub, char **argv);
-int		scene_parse(t_cub *cub);
+int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
+int		check(t_cub *cub);
+int		check_color(char *color);
 void	free_cub(t_cub *cub);
 
 /*map utils*/
@@ -39,5 +41,8 @@ t_map	*ft_mapnew(char *content);
 void	ft_mapback(t_map **lst, t_map *new);
 t_map	*ft_maplast(t_map *lst);
 void	ft_mapclear(t_map **lst);
+
+/*print utils*/
+void	print_cub(t_cub *cub);
 
 #endif

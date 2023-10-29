@@ -48,7 +48,7 @@ static int	check_line(t_cub *cub, char *line, int fd)
 	return (1);
 }
 
-int	scene_parse(t_cub *cub)
+int	parse(t_cub *cub)
 {
 	int		fd;
 	char	*line;
@@ -66,6 +66,5 @@ int	scene_parse(t_cub *cub)
 	}
 	free(line);
 	close(fd);
-	ft_printf(1, "info bounced ok!\n");
 	return (0);
 }
