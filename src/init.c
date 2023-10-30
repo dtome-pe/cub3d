@@ -12,4 +12,5 @@ void	init(t_cub *cub, char **argv)
 	cub->floor_color = NULL;
 	cub->map_list = NULL;
 	cub->map = NULL;
+	cub->line_len = NULL;
 }

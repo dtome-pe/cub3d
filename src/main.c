@@ -10,6 +10,9 @@ int	main(int argc, char **argv)
 		return (1);
 	init(&cub, argv);
 	if (parse(&cub) || check(&cub))
+	{
+		free_cub(&cub);
 		return (1);
+	}
 	free_cub(&cub);
 }

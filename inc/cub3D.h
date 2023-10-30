@@ -24,6 +24,7 @@ typedef struct s_cub
 	char	*floor_color;
 	t_map	*map_list;
 	char	**map;
+	int		*line_len;
 
 }			t_cub;
 
@@ -33,7 +34,7 @@ int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
 int		check(t_cub *cub);
 int		check_color(char *color);
-int		check_map(char **map);
+int		check_map(char **map, int *line_len);
 void	free_cub(t_cub *cub);
 
 /*map utils*/

@@ -63,23 +63,23 @@ static int	check_line(t_cub *cub, char *line, int fd)
 	return (1);
 }
 
-static	char	**list_to_arr(t_map *map)
+static	void	list_to_arr(t_cub *cub)
 {
-	char	**arr;
 	t_map	*ptr;
 	int		i;
 
-	arr = malloc(sizeof (char *) * ((count_list(map)) + 1));
-	ptr = map;
+	cub->map = malloc(sizeof (char *) * ((count_list(cub->map_list)) + 1));
+	cub->line_len = malloc(sizeof (int) * (count_list(cub->map_list)));
+	ptr = cub->map_list;
 	i = 0;
 	while (ptr)
 	{
-		arr[i] = ft_strdup(ptr->line);
+		cub->map[i] = ft_strdup(ptr->line);
+		cub->line_len[i] = ft_strlen(ptr->line);
 		ptr = ptr->next;
 		i++;
 	}
-	arr[i] = NULL;
-	return (arr);
+	cub->map[i] = NULL;
 }
 
 int	parse(t_cub *cub)
@@ -97,6 +97,6 @@ int	parse(t_cub *cub)
 	}
 	free(line);
 	close(fd);
-	cub->map = list_to_arr(cub->map_list);
+	list_to_arr(cub);
 	return (0);
 }
