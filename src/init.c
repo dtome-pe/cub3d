@@ -10,5 +10,6 @@ void	init(t_cub *cub, char **argv)
 	cub->ea_texture = NULL;
 	cub->ceiling_color = NULL;
 	cub->floor_color = NULL;
+	cub->map_list = NULL;
 	cub->map = NULL;
 }

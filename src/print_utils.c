@@ -10,5 +10,5 @@ void	print_cub(t_cub *cub)
 	ft_printf(2, "east texture is: %s\n", cub->ea_texture);
 	ft_printf(2, "celing color is: %s\n", cub->ceiling_color);
 	ft_printf(2, "floor color is: %s\n", cub->floor_color);
-	print_map(cub->map);
+	ft_print_m(cub->map);
 }

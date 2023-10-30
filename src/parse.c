@@ -5,6 +5,21 @@
 #include <stdio.h>
 #include <unistd.h>
 
+static int	count_list(t_map *map)
+{
+	int		c;
+	t_map	*ptr;
+
+	ptr = map;
+	c = 0;
+	while (ptr)
+	{
+		c++;
+		ptr = ptr->next;
+	}
+	return (c);
+}
+
 static int	get_element(t_cub *cub, char *line)
 {
 	char	**split;
@@ -48,6 +63,25 @@ static int	check_line(t_cub *cub, char *line, int fd)
 	return (1);
 }
 
+static	char	**list_to_arr(t_map *map)
+{
+	char	**arr;
+	t_map	*ptr;
+	int		i;
+
+	arr = malloc(sizeof (char *) * ((count_list(map)) + 1));
+	ptr = map;
+	i = 0;
+	while (ptr)
+	{
+		arr[i] = ft_strdup(ptr->line);
+		ptr = ptr->next;
+		i++;
+	}
+	arr[i] = NULL;
+	return (arr);
+}
+
 int	parse(t_cub *cub)
 {
 	int		fd;
@@ -63,5 +97,6 @@ int	parse(t_cub *cub)
 	}
 	free(line);
 	close(fd);
+	cub->map = list_to_arr(cub->map_list);
 	return (0);
 }

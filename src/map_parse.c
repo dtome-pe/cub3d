@@ -2,6 +2,14 @@
 #include "../libft/libft.h"
 #include <stdlib.h>
 
+static int	pos_char(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	else
+		return (0);
+}
+
 static int	map_charset(char *line)
 {
 	int			i;
@@ -12,14 +20,12 @@ static int	map_charset(char *line)
 	{
 		if (line[i] == '0' || line[i] == '1' || line[i] == ' ')
 			i++;
-		else if ((line[i] == 'N' || line[i] == 'S' 
-				|| line[i] == 'W' || line[i] == 'E') && !pos)
+		else if (pos_char(line[i]) && !pos)
 		{
 			pos = 1;
 			i++;
 		}
-		else if ((line[i] == 'N' || line[i] == 'S' 
-				|| line[i] == 'W' || line[i] == 'E') && pos)
+		else if (pos_char(line[i]) && pos)
 		{
 			ft_printf(2, "Only one initial position accepted.\n");
 			return (1);
@@ -60,7 +66,7 @@ static int	bounce_map(t_cub *cub, char *line, int fd)
 			free(no_nl);
 			return (1);
 		}
-		ft_mapback(&cub->map, ft_mapnew(line));
+		ft_mapback(&cub->map_list, ft_mapnew(line));
 		free(line);
 		free(no_nl);
 		line = get_next_line(fd);
@@ -70,6 +76,13 @@ static int	bounce_map(t_cub *cub, char *line, int fd)
 
 int	get_map(t_cub *cub, char *line, int fd)
 {
+	static int	map;
+
+	if (map)
+	{
+		ft_printf(2, "Wrong configuration in file.\n");
+		return (1);
+	}
 	if (check_elements(cub))
 	{
 		free(line);
@@ -77,5 +90,6 @@ int	get_map(t_cub *cub, char *line, int fd)
 	}
 	if (bounce_map(cub, line, fd))
 		return (1);
+	map++;
 	return (0);
 }
