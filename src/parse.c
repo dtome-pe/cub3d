@@ -58,10 +58,7 @@ int	parse(t_cub *cub)
 	while (line)
 	{
 		if (check_line(cub, line, fd))
-		{
-			ft_printf(1, "Something went wrong!\n");
 			return (1);
-		}
 		line = get_next_line(fd);
 	}
 	free(line);

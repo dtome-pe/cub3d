@@ -32,6 +32,7 @@ int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
 int		check(t_cub *cub);
 int		check_color(char *color);
+int		check_map(t_map *map);
 void	free_cub(t_cub *cub);
 
 /*map utils*/
