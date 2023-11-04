@@ -78,6 +78,30 @@ static int	check_west(char **map)
 	return (0);
 }
 
+static int	check_east(char **map, int *line_len)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	col = line_len[row];
+	while (map[row])
+	{
+		while (col != 0 && map[row][col] != '0')
+			col--;
+		if (map[row] && map[row][col] == '0')
+		{
+			if (col == line_len[row])
+				return (1);
+			if (map[row][col + 1] != '1')
+				return (1);
+		}
+		++row;
+		col = line_len[row];
+	}
+	return (0);
+}
+
 int	check_map(char **map, int *line_len)
 {
 	int	flag;
@@ -90,6 +114,7 @@ int	check_map(char **map, int *line_len)
 	flag += check_north(map, width, line_len);
 	flag += check_south(map, width, height, line_len);
 	flag += check_west(map);
+	flag += check_east(map, line_len);
 	if (flag)
 		ft_printf(2, "Map error.\n");
 	return (flag);
