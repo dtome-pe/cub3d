@@ -14,7 +14,8 @@ SRCS =  $(addprefix $(SRC_DIR)/,ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft
 		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
 		ft_lstmap.c ft_dlstnew.c ft_dlstadd_back.c ft_dlstlast.c ft_dlstadd_front.c ft_reverse_tab.c \
-		ft_printarr.c ft_strcmp.c ft_strcat.c ft_check_malloc_error.c ft_free_matrix.c ft_print_m.c)
+		ft_printarr.c ft_strcmp.c ft_strcat.c ft_check_malloc_error.c ft_free_matrix.c ft_print_m.c \
+		ft_count_arr.c)
 		
 OBJ_DIR = obj
 

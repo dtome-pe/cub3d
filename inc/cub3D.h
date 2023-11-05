@@ -35,6 +35,7 @@ int		get_map(t_cub *cub, char *line, int fd);
 int		check(t_cub *cub);
 int		check_color(char *color);
 int		check_map(char **map, int *line_len);
+int		check_single(char **map, int *line_len);
 int		get_length(char **map);
 int		get_height(char **map);
 void	free_cub(t_cub *cub);

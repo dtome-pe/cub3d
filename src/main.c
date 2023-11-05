@@ -11,10 +11,8 @@ int	main(int argc, char **argv)
 	init(&cub, argv);
 	if (parse(&cub) || check(&cub))
 	{
-		ft_printf(1, "Not Ok!\n");
 		free_cub(&cub);
 		return (1);
 	}
-	ft_printf(1, "Ok!\n");
 	free_cub(&cub);
 }
