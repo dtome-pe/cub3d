@@ -1,6 +1,5 @@
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
-#include "../mlx_linux/mlx.h"
 
 int	main(int argc, char **argv)
 {
@@ -14,6 +13,6 @@ int	main(int argc, char **argv)
 		free_cub(&cub);
 		return (1);
 	}
+	game(&cub);
 	free_cub(&cub);
-	
 }

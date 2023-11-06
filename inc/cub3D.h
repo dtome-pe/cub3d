@@ -3,6 +3,7 @@
 
 # define WIDTH 640
 # define HEIGHT 480
+# define ESC 65307
 
 typedef struct s_map
 {
@@ -45,8 +46,10 @@ typedef struct s_cub
 
 }			t_cub;
 
-int		check_argv(int argc, char **argv);
 void	init(t_cub *cub, char **argv);
+
+/*parse - check*/
+int		check_argv(int argc, char **argv);
 int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
 int		check(t_cub *cub);
@@ -56,6 +59,10 @@ int		check_single(char **map, int *line_len);
 int		get_length(char **map);
 int		get_height(char **map);
 int		is_pos(char c);
+
+/*game - raycasting*/
+void	game(t_cub *cub);
+
 void	free_cub(t_cub *cub);
 
 /*map utils*/
