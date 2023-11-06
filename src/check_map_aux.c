@@ -29,3 +29,11 @@ int	get_height(char **map)
 		height++;
 	return (height);
 }
+
+int	is_pos(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	else
+		return (0);
+}

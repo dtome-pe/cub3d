@@ -10,22 +10,21 @@ static int	pos_char(char c)
 		return (0);
 }
 
-static int	map_charset(char *line)
+static int	map_charset(t_cub *cub, char *line)
 {
 	int			i;
-	static int	pos;
 
 	i = 0;
 	while (line[i])
 	{
 		if (line[i] == '0' || line[i] == '1' || line[i] == ' ')
 			i++;
-		else if (pos_char(line[i]) && !pos)
+		else if (pos_char(line[i]) && !cub->pos)
 		{
-			pos = 1;
+			cub->pos = 1;
 			i++;
 		}
-		else if (pos_char(line[i]) && pos)
+		else if (pos_char(line[i]) && cub->pos)
 		{
 			ft_printf(2, "Only one initial position accepted.\n");
 			return (1);
@@ -57,10 +56,11 @@ static int	bounce_map(t_cub *cub, char *line, int fd)
 {
 	char	*no_nl;
 
+	cub->pos = 0;
 	while (line && ft_strcmp(line, "\n") != 0)
 	{
 		no_nl = ft_substr(line, 0, ft_strlen(line) - 1);
-		if (map_charset(no_nl))
+		if (map_charset(cub, no_nl))
 		{
 			free(line);
 			free(no_nl);
@@ -70,6 +70,11 @@ static int	bounce_map(t_cub *cub, char *line, int fd)
 		free(line);
 		free(no_nl);
 		line = get_next_line(fd);
+	}
+	if (!cub->pos)
+	{
+		ft_printf(2, "A initial position is required.\n");
+		return (1);
 	}
 	return (0);
 }

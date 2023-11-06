@@ -12,10 +12,10 @@ static int	check_north(char **map, int width, int *line_len)
 	{
 		while (line_len[row] < col)
 			row++;
-		while (map[row] && map[row][col] != '0' &&
+		while (map[row] && (map[row][col] != '0' && !is_pos(map[row][col])) &&
 			map[row + 1] && line_len[row + 1] >= col)
 			row++;
-		if (map[row] && map[row][col] == '0')
+		if (map[row] && (map[row][col] == '0' || is_pos(map[row][col])))
 		{
 			if (row == 0)
 				return (1);
@@ -26,6 +26,7 @@ static int	check_north(char **map, int width, int *line_len)
 		row = 0;
 		col++;
 	}
+	ft_printf(1, "north ok!\n");
 	return (0);
 }
 
@@ -39,10 +40,10 @@ static int	check_south(char **map, int width, int height, int *line_len)
 	row = height;
 	while (width)
 	{
-		while (map[row] && map[row][col] != '0' &&
+		while (map[row] && (map[row][col] != '0' && !is_pos(map[row][col])) &&
 				map[row - 1] && line_len[row - 1] >= col)
 			row--;
-		if (map[row] && map[row][col] == '0')
+		if (map[row] && (map[row][col] == '0' || is_pos(map[row][col])))
 		{
 			if (row == height)
 				return (1);
@@ -53,6 +54,7 @@ static int	check_south(char **map, int width, int height, int *line_len)
 		row = height;
 		col++;
 	}
+	ft_printf(1, "south ok!\n");
 	return (0);
 }
 
@@ -65,9 +67,10 @@ static int	check_west(char **map)
 	col = 0;
 	while (map[row])
 	{
-		while (map[row][col] != '\0' && map[row][col] != '0')
+		while (map[row][col] != '\0' && (map[row][col] != '0' 
+			&& !is_pos(map[row][col])))
 			col++;
-		if (map[row] && map[row][col] == '0')
+		if (map[row] && (map[row][col] == '0' || is_pos(map[row][col])))
 		{
 			if (col == 0)
 				return (1);
@@ -77,6 +80,7 @@ static int	check_west(char **map)
 		row++;
 		col = 0;
 	}
+	ft_printf(1, "west ok!\n");
 	return (0);
 }
 
@@ -89,9 +93,9 @@ static int	check_east(char **map, int *line_len)
 	col = line_len[row];
 	while (map[row])
 	{
-		while (col != 0 && map[row][col] != '0')
+		while (col != 0 && (map[row][col] != '0' && !is_pos(map[row][col])))
 			col--;
-		if (map[row] && map[row][col] == '0')
+		if (map[row] && (map[row][col] == '0' || is_pos(map[row][col])))
 		{
 			if (col == line_len[row])
 				return (1);
@@ -102,24 +106,28 @@ static int	check_east(char **map, int *line_len)
 		if (map[row])
 			col = line_len[row];
 	}
+	ft_printf(1, "east ok!\n");
 	return (0);
 }
 
 int	check_map(char **map, int *line_len)
 {
-	int	flag;
 	int	width;
 	int	height;
 
-	flag = 0;
 	width = get_length(map);
 	height = get_height(map);
-	flag += check_north(map, width, line_len);
-	flag += check_south(map, width, height, line_len);
-	flag += check_west(map);
-	flag += check_east(map, line_len);
-	flag += check_single(map, line_len);
-	if (flag)
-		ft_printf(2, "Map error.\n");
-	return (flag);
+	if (check_north(map, width, line_len) 
+		|| check_south(map, width, height, line_len) || check_west(map) 
+		|| check_east(map, line_len))
+	{
+		ft_printf(2, "Map is not enclosed by walls.\n");
+		return (1);
+	}
+	if (check_single(map, line_len))
+	{
+		ft_printf(2, "Map is not continuous.\n");
+		return (1);
+	}
+	return (0);
 }

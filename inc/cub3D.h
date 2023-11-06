@@ -25,6 +25,7 @@ typedef struct s_cub
 	t_map	*map_list;
 	char	**map;
 	int		*line_len;
+	int		pos;
 
 }			t_cub;
 
@@ -38,6 +39,7 @@ int		check_map(char **map, int *line_len);
 int		check_single(char **map, int *line_len);
 int		get_length(char **map);
 int		get_height(char **map);
+int		is_pos(char c);
 void	free_cub(t_cub *cub);
 
 /*map utils*/
