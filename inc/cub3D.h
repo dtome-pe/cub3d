@@ -1,12 +1,22 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define WIDTH 640
+# define HEIGHT 480
+
 typedef struct s_map
 {
 	char			*line;
 	struct s_map	*next;
 
 }				t_map;
+
+typedef struct s_vec
+{
+	int	x;
+	int	y;
+}				t_vec;
+
 
 typedef struct s_cub
 {
@@ -25,7 +35,13 @@ typedef struct s_cub
 	t_map	*map_list;
 	char	**map;
 	int		*line_len;
-	int		pos;
+	int		char_pos;
+
+	/*game data*/
+	t_vec	pos;
+	t_vec	dir;
+	t_vec	plane;
+
 
 }			t_cub;
 
