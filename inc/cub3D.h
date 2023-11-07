@@ -56,6 +56,7 @@ int		check(t_cub *cub);
 int		check_color(char *color);
 int		check_map(char **map, int *line_len);
 int		check_single(char **map, int *line_len);
+int		check_textures(t_cub *cub);
 int		get_length(char **map);
 int		get_height(char **map);
 int		is_pos(char c);

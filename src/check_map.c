@@ -26,7 +26,6 @@ static int	check_north(char **map, int width, int *line_len)
 		row = 0;
 		col++;
 	}
-	ft_printf(1, "north ok!\n");
 	return (0);
 }
 
@@ -54,7 +53,6 @@ static int	check_south(char **map, int width, int height, int *line_len)
 		row = height;
 		col++;
 	}
-	ft_printf(1, "south ok!\n");
 	return (0);
 }
 
@@ -80,7 +78,6 @@ static int	check_west(char **map)
 		row++;
 		col = 0;
 	}
-	ft_printf(1, "west ok!\n");
 	return (0);
 }
 
@@ -106,7 +103,6 @@ static int	check_east(char **map, int *line_len)
 		if (map[row])
 			col = line_len[row];
 	}
-	ft_printf(1, "east ok!\n");
 	return (0);
 }
 

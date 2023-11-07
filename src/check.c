@@ -8,5 +8,7 @@ int	check(t_cub *cub)
 		return (1);
 	if (check_map(cub->map, cub->line_len))
 		return (1);
+	if (check_textures(cub))
+		return (1);
 	return (0);
 }
