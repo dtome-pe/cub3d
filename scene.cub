@@ -1,9 +1,9 @@
 
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+WE ./textures/wall1.xpm
+EA ./textures/wall2.xpm
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
+NO ./textures/wall3.xpm
+SO ./textures/wall4.xpm
 
 F 220,100,0
 C 253,30,0

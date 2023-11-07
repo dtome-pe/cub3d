@@ -1,5 +1,6 @@
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
+#include <stdio.h>
 
 void	print_cub(t_cub *cub)
 {
@@ -15,5 +16,5 @@ void	print_cub(t_cub *cub)
 
 void	print_vector(t_vec *vec)
 {
-	ft_printf(1, "x is %d, y is %d\n", vec->x, vec->y);
+	printf("x is %f, y is %f\n", vec->x, vec->y);
 }

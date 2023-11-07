@@ -28,7 +28,7 @@ static char	set_pos(t_cub *cub)
 		{
 			if (is_pos(cub->map[row][col]))
 			{
-				set_vector(&cub->pos, col, row);
+				vector(&cub->pos, col, row);
 				return (cub->map[row][col]);
 			}
 			col++;
@@ -42,13 +42,13 @@ static char	set_pos(t_cub *cub)
 void	set_dir(t_vec *dir, char c)
 {
 	if (c == 'N')
-		set_vector(dir, 0, 1);
+		vector(dir, 0, 1);
 	else if (c == 'S')
-		set_vector(dir, 0, -1);
+		vector(dir, 0, -1);
 	else if (c == 'W')
-		set_vector(dir, -1, 0);
+		vector(dir, -1, 0);
 	else if (c == 'E')
-		set_vector(dir, 1, 0);
+		vector(dir, 1, 0);
 }
 
 void	init_game(t_cub *cub)
@@ -57,5 +57,5 @@ void	init_game(t_cub *cub)
 
 	pos = set_pos(cub);
 	set_dir(&cub->dir, pos);
-	set_vector(&cub->plane, 0, 0.66);
+	vector(&cub->plane, 0, 0.66);
 }

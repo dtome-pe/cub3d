@@ -1,8 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 640
-# define HEIGHT 480
+# define W 640
+# define H 480
 # define ESC 65307
 
 typedef struct s_map
@@ -42,8 +42,15 @@ typedef struct s_cub
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
-
-
+	t_vec	ray;
+	t_vec	ray_map;
+	t_vec	dist;
+	t_vec	delta_dist;
+	double	camera;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		hit_side;
 }			t_cub;
 
 /*parse - check*/
@@ -80,6 +87,6 @@ void	print_cub(t_cub *cub);
 void	print_vector(t_vec *vec);
 
 /*vector utils*/
-void	set_vector(t_vec *vec, double x, double y);
+void	vector(t_vec *vec, double x, double y);
 
 #endif
