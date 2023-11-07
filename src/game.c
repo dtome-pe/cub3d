@@ -14,6 +14,7 @@ static int	key_press(int key)
 
 void	game(t_cub *cub)
 {
+	init_game(cub);
 	cub->mlx_ptr = mlx_init();
 	cub->win_ptr = mlx_new_window(cub->mlx_ptr, WIDTH, HEIGHT, "cub3D");
 	mlx_hook(cub->win_ptr, 2, 1L << 0, key_press, game);

@@ -12,3 +12,8 @@ void	print_cub(t_cub *cub)
 	ft_printf(2, "floor color is: %s\n", cub->floor_color);
 	ft_print_m(cub->map);
 }
+
+void	print_vector(t_vec *vec)
+{
+	ft_printf(1, "x is %d, y is %d\n", vec->x, vec->y);
+}

@@ -14,8 +14,8 @@ typedef struct s_map
 
 typedef struct s_vec
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }				t_vec;
 
 
@@ -46,9 +46,9 @@ typedef struct s_cub
 
 }			t_cub;
 
-void	init(t_cub *cub, char **argv);
-
 /*parse - check*/
+void	init_parse(t_cub *cub, char **argv);
+
 int		check_argv(int argc, char **argv);
 int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
@@ -61,6 +61,7 @@ int		get_height(char **map);
 int		is_pos(char c);
 
 /*game - raycasting*/
+void	init_game(t_cub *cub);
 void	game(t_cub *cub);
 
 void	free_cub(t_cub *cub);
@@ -75,5 +76,9 @@ void	ft_mapclear(t_map **lst);
 
 /*print utils*/
 void	print_cub(t_cub *cub);
+void	print_vector(t_vec *vec);
+
+/*vector utils*/
+void	set_vector(t_vec *vec, double x, double y);
 
 #endif

@@ -7,7 +7,7 @@ int	main(int argc, char **argv)
 
 	if (check_argv(argc, argv))
 		return (1);
-	init(&cub, argv);
+	init_parse(&cub, argv);
 	if (parse(&cub) || check(&cub))
 	{
 		free_cub(&cub);
