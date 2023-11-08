@@ -33,7 +33,7 @@ static void	initial_calc(t_cub *cub)
 	if (cub->ray.y < 0)
 	{
 		cub->step_y = -1;
-		cub->dist.y = (cub->pos.y - cub->ray_map.y * cub->delta_dist.y;
+		cub->dist.y = (cub->pos.y - cub->ray_map.y) * cub->delta_dist.y;
 	}
 	else
 	{
