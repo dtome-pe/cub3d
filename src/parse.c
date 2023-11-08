@@ -28,13 +28,13 @@ static int	get_element(t_cub *cub, char *line)
 	flag = 0;
 	split = ft_split(line, ' ');
 	if (ft_strcmp(split[0], "NO") == 0 && ++flag)
-		cub->no_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+		cub->n_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
 	else if (ft_strcmp(split[0], "SO") == 0 && ++flag)
-		cub->so_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+		cub->s_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
 	else if (ft_strcmp(split[0], "WE" ) == 0 && ++flag)
-		cub->we_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+		cub->w_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
 	else if (ft_strcmp(split[0], "EA") == 0 && ++flag)
-		cub->ea_texture = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+		cub->e_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
 	else if (ft_strcmp(split[0], "C") == 0 && ++flag)
 		cub->ceiling_color = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
 	else if (ft_strcmp(split[0], "F") == 0 && ++flag)

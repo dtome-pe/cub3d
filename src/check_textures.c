@@ -24,16 +24,16 @@ int	check_textures(t_cub *cub)
 {
 	int	rtn;
 
-	rtn = check_open(cub->no_texture);
+	rtn = check_open(cub->n_p);
 	if (rtn)
 		return (texture_error("North"));
-	rtn = check_open(cub->so_texture);
+	rtn = check_open(cub->s_p);
 	if (rtn)
 		return (texture_error("South"));
-	rtn = check_open(cub->we_texture);
+	rtn = check_open(cub->w_p);
 	if (rtn)
 		return (texture_error("West"));
-	rtn = check_open(cub->ea_texture);
+	rtn = check_open(cub->e_p);
 	if (rtn)
 		return (texture_error("East"));
 	return (0);

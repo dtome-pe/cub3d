@@ -1,13 +1,14 @@
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
+#include "../mlx_linux/mlx.h"
 
 void	init_parse(t_cub *cub, char **argv)
 {
 	cub->path = ft_strdup(argv[1]);
-	cub->no_texture = NULL;
-	cub->so_texture = NULL;
-	cub->we_texture = NULL;
-	cub->ea_texture = NULL;
+	cub->n_p = NULL;
+	cub->s_p = NULL;
+	cub->w_p = NULL;
+	cub->e_p = NULL;
 	cub->ceiling_color = NULL;
 	cub->floor_color = NULL;
 	cub->map_list = NULL;
@@ -58,4 +59,9 @@ void	init_game(t_cub *cub)
 	pos = set_pos(cub);
 	set_dir(&cub->dir, pos);
 	vector(&cub->plane, 0, 0.66);
+	cub->n = mlx_xpm_file_to_image(cub->mlx, cub->n_p, &cub->n_w, &cub->n_h);
+	cub->s = mlx_xpm_file_to_image(cub->mlx, cub->s_p, &cub->s_w, &cub->s_h);
+	cub->w = mlx_xpm_file_to_image(cub->mlx, cub->w_p, &cub->w_w, &cub->w_h);
+	cub->e = mlx_xpm_file_to_image(cub->mlx, cub->e_p, &cub->e_w, &cub->e_h);
+
 }

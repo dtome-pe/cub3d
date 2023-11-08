@@ -5,10 +5,10 @@
 void	free_cub(t_cub *cub)
 {
 	free(cub->path);
-	free(cub->no_texture);
-	free(cub->so_texture);
-	free(cub->we_texture);
-	free(cub->ea_texture);
+	free(cub->n_p);
+	free(cub->s_p);
+	free(cub->w_p);
+	free(cub->e_p);
 	free(cub->ceiling_color);
 	free(cub->floor_color);
 	ft_mapclear(&cub->map_list);

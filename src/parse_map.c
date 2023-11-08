@@ -40,8 +40,8 @@ static int	map_charset(t_cub *cub, char *line)
 
 static int	check_elements(t_cub *cub)
 {
-	if (!cub->no_texture || !cub->so_texture
-		|| !cub->we_texture || !cub->ea_texture
+	if (!cub->n_p || !cub->s_p
+		|| !cub->w_p || !cub->e_p
 		|| !cub->ceiling_color || !cub->floor_color)
 	{
 		ft_printf(2, "Wrong element order. (Map is not the last element,");

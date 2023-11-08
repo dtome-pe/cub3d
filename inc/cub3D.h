@@ -22,15 +22,15 @@ typedef struct s_vec
 typedef struct s_cub
 {
 	/*minilibx*/
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 
 	/*map parsing - checking*/
 	char	*path;
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
+	char	*n_p;
+	char	*s_p;
+	char	*w_p;
+	char	*e_p;
 	char	*ceiling_color;
 	char	*floor_color;
 	t_map	*map_list;
@@ -38,7 +38,7 @@ typedef struct s_cub
 	int		*line_len;
 	int		char_pos;
 
-	/*game data*/
+	/*raycasting calculations*/
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
@@ -51,6 +51,24 @@ typedef struct s_cub
 	int		step_y;
 	int		hit;
 	int		hit_side;
+	double	wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+
+	/*game textures*/
+	void	*n;
+	int		n_w;
+	int		n_h;
+	void	*s;
+	int		s_w;
+	int		s_h;
+	void	*w;
+	int		w_w;
+	int		w_h;
+	void	*e;
+	int		e_w;
+	int		e_h;
 }			t_cub;
 
 /*parse - check*/
@@ -73,6 +91,9 @@ void	init_game(t_cub *cub);
 void	game(t_cub *cub);
 
 void	free_cub(t_cub *cub);
+
+/*keys*/
+int		key_press(int key);
 
 /*map utils*/
 

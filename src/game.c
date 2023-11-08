@@ -1,26 +1,32 @@
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
-#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 
-static int	key_press(int key)
+static void	get_draw(t_cub *cub)
 {
-	if (key == ESC)
-	{
-		exit(0);
-	}
-	return (0);
+	if (cub->hit_side == 0) // medimos distancia del rayo hasta la pared que gracias a como han ido escalando las distancias, es simplemente restar un delta al side, ya que hemos ido una de mas
+		cub->wall_dist = cub->dist.x - cub->delta_dist.x;
+	else
+		cub->wall_dist = cub->dist.y - cub->delta_dist.y;
+	/*cambiamos distancia en pixeles, y calculamos pixel mas bajo y mas alto*/
+	cub->line_height = (int) (H / cub->wall_dist);
+	cub->draw_start = -cub->line_height / 2 + H / 2;
+	if (cub->draw_start < 0)
+		cub->draw_start = 0;
+	cub->draw_end = cub->line_height / 2 + H / 2;
+	if (cub->draw_end >= H)
+		cub->draw_end = H - 1;
 }
 
 static void	initial_calc(t_cub *cub)
 {
 	vector(&cub->ray, cub->dir.x + cub->plane.x * cub->camera,
-		cub->dir.y + cub->plane.y * cub->camera);
-	vector(&cub->ray_map, (int) cub->pos.x, (int) cub->pos.y);
-	vector(&cub->delta_dist, fabs(1 / cub->ray.x), fabs(1 / cub->ray.y));
-	if (cub->ray.x < 0)
+		cub->dir.y + cub->plane.y * cub->camera); // direccion del rayo, que empieza en posicion de jugador.
+	vector(&cub->ray_map, (int) cub->pos.x, (int) cub->pos.y); // coordenada del cuadrado donde estamos, en integros.
+	vector(&cub->delta_dist, fabs(1 / cub->ray.x), fabs(1 / cub->ray.y)); // calculamos hipotenusa para calcular distancia para que siempre comprobemos si ha chocado en pared en cada limite de cuadrado
+	if (cub->ray.x < 0)  //comprobamos si el rayo es x negativo o no, para ir pasando cuadrado a cudardo por la izquierda o derecha
 	{
 		cub->step_x = -1;
 		cub->dist.x = (cub->pos.x - cub->ray_map.x) * cub->delta_dist.x;
@@ -30,7 +36,7 @@ static void	initial_calc(t_cub *cub)
 		cub->step_x = 1;
 		cub->dist.x = (cub->ray_map.x + 1.0 - cub->pos.x) * cub->delta_dist.x;
 	}
-	if (cub->ray.y < 0)
+	if (cub->ray.y < 0) // lo mismo con la y
 	{
 		cub->step_y = -1;
 		cub->dist.y = (cub->pos.y - cub->ray_map.y) * cub->delta_dist.y;
@@ -42,6 +48,27 @@ static void	initial_calc(t_cub *cub)
 	}
 }
 
+static void	dda(t_cub *cub)
+{
+	while (cub->hit == 0) // loop DDA hasta que encontremos pared
+	{
+		if (cub->dist.x < cub->dist.y)
+		{
+			cub->dist.x += cub->delta_dist.x;
+			cub->ray_map.x += cub->step_x;
+			cub->hit_side = 0;
+		}
+		else
+		{
+			cub->dist.y += cub->delta_dist.y;
+			cub->ray_map.y += cub->step_y;
+			cub->hit_side = 1;
+		}
+		if (cub->map[(int) cub->ray_map.x][(int) cub->ray_map.y] > 0)
+			cub->hit = 1;
+	}
+}
+
 static int	loop(t_cub *cub)
 {
 	int	i;
@@ -49,8 +76,11 @@ static int	loop(t_cub *cub)
 	i = 0;
 	while (i <= W)
 	{
-		cub->camera = 2 * i / (double) W - 1;
+		cub->camera = 2 * i / (double) W - 1; // coordenada x del plano de camara que se renderiza.
 		initial_calc(cub);
+		cub->hit = 0;
+		dda(cub);
+		get_draw(cub);
 		i++;
 	}
 	return (0);
@@ -58,11 +88,11 @@ static int	loop(t_cub *cub)
 
 void	game(t_cub *cub)
 {
-	init_game(cub);
-	cub->mlx_ptr = mlx_init();
-	cub->win_ptr = mlx_new_window(cub->mlx_ptr, W, H, "cub3D");
-	mlx_hook(cub->win_ptr, 2, 1L << 0, key_press, game);
+	cub->mlx = mlx_init();
+	init_game(cub); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
+	cub->win = mlx_new_window(cub->mlx, W, H, "cub3D");
+	mlx_hook(cub->win, 2, 1L << 0, key_press, game);
 	loop(cub);
 	//mlx_loop_hook(cub->mlx_ptr, loop, cub);
-	mlx_loop(cub->mlx_ptr);
+	mlx_loop(cub->mlx);
 }
