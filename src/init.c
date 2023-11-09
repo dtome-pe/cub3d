@@ -52,16 +52,16 @@ void	set_dir(t_vec *dir, char c)
 		vector(dir, 1, 0);
 }
 
-void	init_game(t_cub *cub)
+void	init_game(t_cub *cub, t_mlx *mlx)
 {
 	char	pos;
 
 	pos = set_pos(cub);
 	set_dir(&cub->dir, pos);
 	vector(&cub->plane, 0, 0.66);
-	cub->n = mlx_xpm_file_to_image(cub->mlx, cub->n_p, &cub->n_w, &cub->n_h);
-	cub->s = mlx_xpm_file_to_image(cub->mlx, cub->s_p, &cub->s_w, &cub->s_h);
-	cub->w = mlx_xpm_file_to_image(cub->mlx, cub->w_p, &cub->w_w, &cub->w_h);
-	cub->e = mlx_xpm_file_to_image(cub->mlx, cub->e_p, &cub->e_w, &cub->e_h);
+	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
+	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
+	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
+	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
 
 }

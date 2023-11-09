@@ -2,6 +2,7 @@
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 static void	get_draw(t_cub *cub)
@@ -69,11 +70,14 @@ static void	dda(t_cub *cub)
 	}
 }
 
-static int	loop(t_cub *cub)
+static int	loop(t_cub *cub, t_mlx *mlx)
 {
 	int	i;
 
 	i = 0;
+	mlx->img = mlx_new_image(mlx->mlx, W, H);
+	mlx->addr = mlx_get_data_addr(mlx->img, &(mlx->bits_per_pixel),
+			&(mlx->line_length), &(mlx->endian));
 	while (i <= W)
 	{
 		cub->camera = 2 * i / (double) W - 1; // coordenada x del plano de camara que se renderiza.
@@ -81,18 +85,21 @@ static int	loop(t_cub *cub)
 		cub->hit = 0;
 		dda(cub);
 		get_draw(cub);
+		my_mlx_pixel_put(mlx, 5, 5, 0x00FF0000);
 		i++;
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	return (0);
 }
 
 void	game(t_cub *cub)
 {
-	cub->mlx = mlx_init();
-	init_game(cub); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
-	cub->win = mlx_new_window(cub->mlx, W, H, "cub3D");
-	mlx_hook(cub->win, 2, 1L << 0, key_press, game);
-	loop(cub);
+	cub->mlx = malloc(sizeof (t_mlx));
+	cub->mlx->mlx = mlx_init();
+	cub->mlx->win = mlx_new_window(cub->mlx->mlx, W, H, "cub3D");
+	init_game(cub, cub->mlx); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
+	mlx_hook(cub->mlx->win, 2, 1L << 0, key_press, game);
+	loop(cub, cub->mlx);
 	//mlx_loop_hook(cub->mlx_ptr, loop, cub);
-	mlx_loop(cub->mlx);
+	mlx_loop(cub->mlx->mlx);
 }

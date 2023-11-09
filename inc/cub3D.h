@@ -18,12 +18,23 @@ typedef struct s_vec
 	double	y;
 }				t_vec;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+
+}				t_mlx;
+
 
 typedef struct s_cub
 {
 	/*minilibx*/
-	void	*mlx;
-	void	*win;
+	t_mlx	*mlx;
 
 	/*map parsing - checking*/
 	char	*path;
@@ -87,7 +98,7 @@ int		get_height(char **map);
 int		is_pos(char c);
 
 /*game - raycasting*/
-void	init_game(t_cub *cub);
+void	init_game(t_cub *cub, t_mlx *mlx);
 void	game(t_cub *cub);
 
 void	free_cub(t_cub *cub);
@@ -109,5 +120,8 @@ void	print_vector(t_vec *vec);
 
 /*vector utils*/
 void	vector(t_vec *vec, double x, double y);
+
+/*mlx utils*/
+void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
 
 #endif
