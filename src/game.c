@@ -73,19 +73,26 @@ static void	dda(t_cub *cub)
 static int	loop(t_cub *cub, t_mlx *mlx)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	mlx->img = mlx_new_image(mlx->mlx, W, H);
 	mlx->addr = mlx_get_data_addr(mlx->img, &(mlx->bits_per_pixel),
 			&(mlx->line_length), &(mlx->endian));
-	while (i <= W)
+	while (i < W)
 	{
 		cub->camera = 2 * i / (double) W - 1; // coordenada x del plano de camara que se renderiza.
 		initial_calc(cub);
 		cub->hit = 0;
 		dda(cub);
 		get_draw(cub);
-		my_mlx_pixel_put(mlx, 5, 5, 0x00FF0000);
+		while (j < H)
+		{
+			my_mlx_pixel_put(mlx, i, j, 0x00FF0000);
+			j++;
+		}
+		j = 0;
 		i++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);

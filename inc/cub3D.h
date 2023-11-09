@@ -3,7 +3,7 @@
 
 # define W 640
 # define H 480
-# define ESC 65307
+# define ESC (65307, 53)
 
 typedef struct s_map
 {

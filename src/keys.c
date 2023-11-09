@@ -6,7 +6,7 @@
 int	key_press(int key)
 {
 	if (key == ESC)
-	{
+	{	
 		exit(0);
 	}
 	return (0);
