@@ -105,6 +105,7 @@ void	free_cub(t_cub *cub);
 
 /*keys*/
 int		key_press(int key);
+int		x_press(void);
 
 /*map utils*/
 

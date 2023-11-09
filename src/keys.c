@@ -11,3 +11,8 @@ int	key_press(int key)
 	}
 	return (0);
 }
+
+int	x_press(void)
+{
+	exit(0);
+}

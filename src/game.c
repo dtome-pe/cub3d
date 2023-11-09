@@ -106,6 +106,7 @@ void	game(t_cub *cub)
 	cub->mlx->win = mlx_new_window(cub->mlx->mlx, W, H, "cub3D");
 	init_game(cub, cub->mlx); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
 	mlx_hook(cub->mlx->win, 2, 1L << 0, key_press, game);
+	mlx_hook(cub->mlx->win, 17, 0, x_press, game);
 	loop(cub, cub->mlx);
 	//mlx_loop_hook(cub->mlx_ptr, loop, cub);
 	mlx_loop(cub->mlx->mlx);
