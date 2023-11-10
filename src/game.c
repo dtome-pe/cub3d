@@ -77,9 +77,9 @@ static int	loop(t_cub *cub, t_mlx *mlx)
 
 	i = 0;
 	j = 0;
-	mlx->img = mlx_new_image(mlx->mlx, W, H);
-	mlx->addr = mlx_get_data_addr(mlx->img, &(mlx->bits_per_pixel),
-			&(mlx->line_length), &(mlx->endian));
+	mlx->img.ptr = mlx_new_image(mlx->mlx, W, H);
+	mlx->img.addr = mlx_get_data_addr(mlx->img.ptr, &(mlx->img.bpp),
+			&(mlx->img.line), &(mlx->img.endian));
 	while (i < W)
 	{
 		cub->camera = 2 * i / (double) W - 1; // coordenada x del plano de camara que se renderiza.
@@ -89,13 +89,13 @@ static int	loop(t_cub *cub, t_mlx *mlx)
 		get_draw(cub);
 		while (j < H)
 		{
-			my_mlx_pixel_put(mlx, i, j, 0x00FF0000);
+			my_mlx_pixel_put(&mlx->img, i, j, 0x00FF0000);
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img.ptr, 0, 0);
 	return (0);
 }
 

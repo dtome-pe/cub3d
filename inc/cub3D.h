@@ -3,7 +3,8 @@
 
 # define W 640
 # define H 480
-# define ESC (65307, 53)
+//# define ESC (53) //mac
+# define ESC (65307) // linux
 
 typedef struct s_map
 {
@@ -18,16 +19,20 @@ typedef struct s_vec
 	double	y;
 }				t_vec;
 
+typedef struct		s_img
+{
+	void		*ptr;
+	char		*addr;		// In my code I changed this to int *, which I will explain in a second
+	int			bpp;	//when using ARGB this value is always 32
+	int			line;	//This value represents (your image width) * 4 which I will also explain after
+	int			endian;		//This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
+}			t_img;
+
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-
+	t_img	img;
 }				t_mlx;
 
 
@@ -67,17 +72,17 @@ typedef struct s_cub
 	int		draw_start;
 	int		draw_end;
 
-	/*game textures*/
-	void	*n;
+	/*game images*/
+	t_img	*n;
 	int		n_w;
 	int		n_h;
-	void	*s;
+	t_img	*s;
 	int		s_w;
 	int		s_h;
-	void	*w;
+	t_img	*w;
 	int		w_w;
 	int		w_h;
-	void	*e;
+	t_img	*e;
 	int		e_w;
 	int		e_h;
 }			t_cub;
@@ -123,6 +128,6 @@ void	print_vector(t_vec *vec);
 void	vector(t_vec *vec, double x, double y);
 
 /*mlx utils*/
-void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 #endif
