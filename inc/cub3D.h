@@ -3,6 +3,10 @@
 
 # define W 640
 # define H 480
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
 //# define ESC (53) //mac
 # define ESC (65307) // linux
 
