@@ -18,24 +18,24 @@ void	init_parse(t_cub *cub, char **argv)
 
 static char	set_pos(t_cub *cub)
 {
-	int	row;
-	int	col;
+	int	x;
+	int	y;
 
-	row = 0;
-	col = 0;
-	while (cub->map[row])
+	x = 0;
+	y = 0;
+	while (cub->map[x])
 	{
-		while (cub->map[row][col])
+		while (cub->map[x][y])
 		{
-			if (is_pos(cub->map[row][col]))
+			if (is_pos(cub->map[x][y]))
 			{
-				vector(&cub->pos, col, row);
-				return (cub->map[row][col]);
+				vector(&cub->pos, x, y);
+				return (cub->map[x][y]);
 			}
-			col++;
+			y++;
 		}
-		row++;
-		col = 0;
+		x++;
+		y = 0;
 	}
 	return (0);
 }
@@ -43,13 +43,13 @@ static char	set_pos(t_cub *cub)
 void	set_dir(t_vec *dir, char c)
 {
 	if (c == 'N')
-		vector(dir, 0, 1);
-	else if (c == 'S')
-		vector(dir, 0, -1);
-	else if (c == 'W')
 		vector(dir, -1, 0);
-	else if (c == 'E')
+	else if (c == 'S')
 		vector(dir, 1, 0);
+	else if (c == 'W')
+		vector(dir, 0, -1);
+	else if (c == 'E')
+		vector(dir, 0, 1);
 }
 
 void	init_game(t_cub *cub, t_mlx *mlx)
@@ -59,6 +59,8 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	pos = set_pos(cub);
 	set_dir(&cub->dir, pos);
 	vector(&cub->plane, 0, 0.66);
+	cub->time = 0;
+	cub->old_time = 0;
 	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
 	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);

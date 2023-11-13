@@ -75,6 +75,8 @@ typedef struct s_cub
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	double	time;
+	double	old_time;
 
 	/*game images*/
 	t_img	*n;

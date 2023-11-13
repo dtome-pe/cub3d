@@ -57,42 +57,52 @@ static void	dda(t_cub *cub)
 		{
 			cub->dist.x += cub->delta_dist.x;
 			cub->ray_map.x += cub->step_x;
-			cub->hit_side = 0;
+			cub->hit_side = 0; // pared Este o Oeste
 		}
 		else
 		{
 			cub->dist.y += cub->delta_dist.y;
 			cub->ray_map.y += cub->step_y;
-			cub->hit_side = 1;
+			cub->hit_side = 1; // pared Norte o Sud
 		}
 		if (cub->map[(int) cub->ray_map.x][(int) cub->ray_map.y] > 0)
 			cub->hit = 1;
 	}
 }
 
+static void	draw(t_cub *cub, int w)
+{
+	int	j;
+	int	color;
+
+	j = cub->draw_start;
+	if (cub->hit_side == 1)
+		color = 0x00fefe00;
+	else
+		color = 0x0075fe00;
+	while (j < cub->draw_end)
+	{
+		my_mlx_pixel_put(&cub->mlx->img, w, j, color);
+		j++;
+	}
+}
+
 static int	loop(t_cub *cub, t_mlx *mlx)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	mlx->img.ptr = mlx_new_image(mlx->mlx, W, H);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.ptr, &(mlx->img.bpp),
 			&(mlx->img.line), &(mlx->img.endian));
 	while (i < W)
 	{
+		cub->hit = 0;
 		cub->camera = 2 * i / (double) W - 1; // coordenada x del plano de camara que se renderiza.
 		initial_calc(cub);
-		cub->hit = 0;
 		dda(cub);
 		get_draw(cub);
-		while (j < H)
-		{
-			my_mlx_pixel_put(&mlx->img, i, j, 0x00FF0000);
-			j++;
-		}
-		j = 0;
+		draw(cub, i);
 		i++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img.ptr, 0, 0);
