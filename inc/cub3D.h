@@ -71,6 +71,7 @@ typedef struct s_cub
 	int		step_y;
 	int		hit;
 	int		hit_side;
+	int		hit_direction;
 	double	wall_dist;
 	int		line_height;
 	int		draw_start;

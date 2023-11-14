@@ -66,7 +66,24 @@ static void	dda(t_cub *cub)
 			cub->hit_side = 1; // pared Norte o Sud
 		}
 		if (cub->map[(int) cub->ray_map.x][(int) cub->ray_map.y] > 0)
+		{
 			cub->hit = 1;
+			    // Determine the cardinal direction of the hit wall
+    		if (cub->hit_side == 0) // Vertical wall
+			{
+				if (cub->dist.x > 0)
+					cub->hit_direction = EAST;
+				else
+					cub->hit_direction = WEST;
+			}
+    		else // Horizontal wall
+			{
+				if (cub->dist.y > 0)
+					cub->hit_direction = SOUTH;
+				else
+					cub->hit_direction = NORTH;
+			}
+		}
 	}
 }
 
@@ -76,10 +93,14 @@ static void	draw(t_cub *cub, int w)
 	int	color;
 
 	j = cub->draw_start;
-	if (cub->hit_side == 1)
+	if (cub->hit_direction == NORTH)
 		color = 0x00fefe00;
+	else if (cub->hit_direction == SOUTH)
+		color = 0x00FFBE33;
+	else if (cub->hit_direction == WEST)
+		color = 0x003349FF;
 	else
-		color = 0x0075fe00;
+		color = 0x004CFF33;
 	while (j < cub->draw_end)
 	{
 		my_mlx_pixel_put(&cub->mlx->img, w, j, color);
