@@ -72,16 +72,16 @@ static void	dda(t_cub *cub)
     		if (cub->hit_side == 0) // Vertical wall
 			{
 				if (cub->dist.x > 0)
-					cub->hit_direction = EAST;
+					cub->hit_direction = NORTH;
 				else
-					cub->hit_direction = WEST;
+					cub->hit_direction = SOUTH;
 			}
     		else // Horizontal wall
 			{
 				if (cub->dist.y > 0)
-					cub->hit_direction = SOUTH;
+					cub->hit_direction = EAST;
 				else
-					cub->hit_direction = NORTH;
+					cub->hit_direction = WEST;
 			}
 		}
 	}
@@ -94,13 +94,13 @@ static void	draw(t_cub *cub, int w, t_img *frame)
 
 	j = cub->draw_start;
 	if (cub->hit_direction == NORTH)
-		color = 0x00fefe00;
+		color = 0x00fefe00; // yellow
 	else if (cub->hit_direction == SOUTH)
-		color = 0x00FFBE33;
+		color = 0x00FFBE33; // orange
 	else if (cub->hit_direction == WEST)
-		color = 0x003349FF;
-	else
-		color = 0x004CFF33;
+		color = 0x003349FF; // blue
+	else if (cub->hit_direction == EAST)
+		color = 0x004CFF33; // green
 	while (j < cub->draw_end)
 	{
 		my_mlx_pixel_put(frame, w, j, color);
