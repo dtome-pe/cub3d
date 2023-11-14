@@ -103,7 +103,7 @@ static void	draw(t_cub *cub, int w)
 		color = 0x004CFF33;
 	while (j < cub->draw_end)
 	{
-		my_mlx_pixel_put(&cub->mlx->img, w, j, color);
+		my_mlx_pixel_put(cub->mlx->img, w, j, color);
 		j++;
 	}
 }
@@ -113,9 +113,9 @@ static int	loop(t_cub *cub, t_mlx *mlx)
 	int	i;
 
 	i = 0;
-	mlx->img.ptr = mlx_new_image(mlx->mlx, W, H);
-	mlx->img.addr = mlx_get_data_addr(mlx->img.ptr, &(mlx->img.bpp),
-			&(mlx->img.line), &(mlx->img.endian));
+	mlx->img->ptr = mlx_new_image(cub->mlx->mlx, W, H);
+	mlx->img->addr = mlx_get_data_addr(cub->mlx->img->ptr, &(cub->mlx->img->bpp),
+			&(cub->mlx->img->line), &(cub->mlx->img->endian));
 	while (i < W)
 	{
 		cub->hit = 0;
@@ -126,7 +126,8 @@ static int	loop(t_cub *cub, t_mlx *mlx)
 		draw(cub, i);
 		i++;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img.ptr, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->ptr, 0, 0);
+	mlx_destroy_image(mlx->mlx, mlx->img->ptr);
 	return (0);
 }
 
@@ -136,9 +137,9 @@ void	game(t_cub *cub)
 	cub->mlx->mlx = mlx_init();
 	cub->mlx->win = mlx_new_window(cub->mlx->mlx, W, H, "cub3D");
 	init_game(cub, cub->mlx); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
-	mlx_hook(cub->mlx->win, 2, 1L << 0, key_press, game);
+	mlx_hook(cub->mlx->win, 2, 1L << 0, key_press, cub);
 	mlx_hook(cub->mlx->win, 17, 0, x_press, game);
-	loop(cub, cub->mlx);
-	//mlx_loop_hook(cub->mlx_ptr, loop, cub);
+	//loop(cub, cub->mlx);
+	mlx_loop_hook(cub->mlx->mlx, loop, cub);
 	mlx_loop(cub->mlx->mlx);
 }

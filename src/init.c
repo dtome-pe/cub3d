@@ -1,6 +1,7 @@
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
+#include <stdlib.h>
 
 void	init_parse(t_cub *cub, char **argv)
 {
@@ -59,11 +60,11 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	pos = set_pos(cub);
 	set_dir(&cub->dir, pos);
 	vector(&cub->plane, 0, 0.66);
-	cub->time = 0;
-	cub->old_time = 0;
+	cub->move_speed = 0.50;
+	cub->rot_speed = 0.50;
 	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
 	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
 	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
-
+	cub->mlx->img = malloc(sizeof (t_img));
 }

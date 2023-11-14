@@ -9,6 +9,12 @@
 # define EAST 3
 //# define ESC (53) //mac
 # define ESC (65307) // linux
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
+# define ROTLEFT 65361
+# define ROTRIGHT 65363
 
 typedef struct s_map
 {
@@ -36,7 +42,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	t_img	img;
+	t_img	*img;
 }				t_mlx;
 
 
@@ -76,8 +82,8 @@ typedef struct s_cub
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-	double	time;
-	double	old_time;
+	double	move_speed;
+	double	rot_speed;
 
 	/*game images*/
 	t_img	*n;
@@ -116,7 +122,7 @@ void	game(t_cub *cub);
 void	free_cub(t_cub *cub);
 
 /*keys*/
-int		key_press(int key);
+int		key_press(int key, t_cub *cub);
 int		x_press(void);
 
 /*map utils*/
