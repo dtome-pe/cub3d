@@ -129,7 +129,6 @@ static int	loop(t_cub *cub, t_mlx *mlx)
 		i++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, frame.ptr, 0, 0);
-	mlx_destroy_image(mlx->mlx, frame.ptr);
 	return (0);
 }
 
@@ -141,11 +140,6 @@ void	game(t_cub *cub)
 	init_game(cub, cub->mlx); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
 	mlx_hook(cub->mlx->win, 2, 1L << 0, key_press, cub);
 	mlx_hook(cub->mlx->win, 17, 0, x_press, game);
-/* 	int i = 0;
-	while (i < 1000)
-	{
-		loop(cub, cub->mlx);
-	} */
 	mlx_loop_hook(cub->mlx->mlx, loop, cub);
 	mlx_loop(cub->mlx->mlx);
 }

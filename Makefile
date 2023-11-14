@@ -22,13 +22,13 @@ CFLAGS		= -Wall -Werror -Wextra -I inc/
 
 CC			= gcc
 
-all: make_libft $(NAME)
+all: make_libft make_mini $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) inc/cub3D.h
-	$(CC) -g $(CFLAGS) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -L$(LIBFT_DIR) -lft -o $(NAME)
+	$(CC) -g $(CFLAGS) $(OBJ) -fsanitize=address -Lmlx -lmlx -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(OBJ_DIR)/%.o : src/%.c inc/cub3D.h Makefile | $(OBJ_DIR)
-	$(CC) -c $(CFLAGS) $< -o $@ 
+	$(CC) -c $(CFLAGS) $< -o $@ -fsanitize=address
 
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
@@ -52,6 +52,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-
-
