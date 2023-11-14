@@ -66,5 +66,4 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
 	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
 	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
-	cub->mlx->img = malloc(sizeof (t_img));
 }
