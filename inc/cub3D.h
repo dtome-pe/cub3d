@@ -91,6 +91,13 @@ typedef struct s_cub
 	double	move_speed;
 	double	rot_speed;
 
+	/*floor-ceiling cast*/
+	char	**f_rgb;
+	char	**c_rgb;
+	int		f_color;
+	int		c_color;		
+
+
 	/*game images*/
 	t_img	*n;
 	int		n_w;
@@ -113,7 +120,7 @@ int		check_argv(int argc, char **argv);
 int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
 int		check(t_cub *cub);
-int		check_color(char *color);
+int		check_color(t_cub *cub, char *color, char *type);
 int		check_map(char **map, int *line_len);
 int		check_single(char **map, int *line_len);
 int		check_textures(t_cub *cub);
@@ -125,6 +132,7 @@ int		is_pos(char c);
 void	init_game(t_cub *cub, t_mlx *mlx);
 void	game(t_cub *cub);
 
+void	draw_floor_ceiling(t_cub *cub, t_img *frame);
 void	free_cub(t_cub *cub);
 
 /*keys*/
@@ -142,6 +150,7 @@ void	ft_mapclear(t_map **lst);
 /*print utils*/
 void	print_cub(t_cub *cub);
 void	print_vector(t_vec *vec);
+int		print_error(char *str);
 
 /*vector utils*/
 void	vector(t_vec *vec, double x, double y);

@@ -18,3 +18,8 @@ void	print_vector(t_vec *vec)
 {
 	printf("x is %f, y is %f\n", vec->x, vec->y);
 }
+int		print_error(char *str)
+{
+	ft_printf(2, "%s\n", str);
+	return (1);
+}

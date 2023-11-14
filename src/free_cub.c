@@ -13,5 +13,7 @@ void	free_cub(t_cub *cub)
 	free(cub->floor_color);
 	ft_mapclear(&cub->map_list);
 	ft_free_m(cub->map);
+	ft_free_m(cub->f_rgb);
+	ft_free_m(cub->c_rgb);
 	free(cub->line_len);
 }

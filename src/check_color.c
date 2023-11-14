@@ -20,6 +20,33 @@ static int	count_m(char **m)
 	return (i);
 }
 
+static void	save_values(t_cub *cub, char **split, char *type)
+{	
+	int	i;
+
+	i = 0;
+	if (ft_strcmp(type, "ceiling") == 0)
+	{
+		cub->c_rgb = malloc(sizeof(char *) * 4);
+		while (split[i])
+		{
+			cub->c_rgb[i] = ft_strdup(split[i]);
+			i++;
+		}
+		cub->c_rgb[i] = NULL;
+	}
+	else if (ft_strcmp(type, "floor") == 0)
+	{
+		cub->f_rgb = malloc(sizeof(char *) * 4);
+		while (split[i])
+		{
+			cub->f_rgb[i] = ft_strdup(split[i]);
+			i++;
+		}
+		cub->f_rgb[i] = NULL;
+	}
+}
+
 static int	contains_value_charset(char *number)
 {
 	int	i;
@@ -45,7 +72,7 @@ static int	contains_value_charset(char *number)
 		return (0);
 }
 
-int	check_color(char *color)
+int	check_color(t_cub *cub, char *color, char *type)
 {
 	char	**split;
 	int		i;
@@ -53,16 +80,10 @@ int	check_color(char *color)
 
 	flag = 0;
 	if (contains_value_charset(color))
-	{
-		ft_printf(2, "Wrong characters in color values.\n");
-		return (1);
-	}
+		return (print_error("Wrong characters in color values."));
 	split = ft_split(color, ',');
 	if (count_m(split) != 3)
-	{
-		ft_printf(2, "Wrong number of color values.\n");
-		return (1);
-	}
+		return (print_error("Wrong number of color values."));
 	i = 0;
 	while (split[i] && !flag)
 	{
@@ -70,6 +91,7 @@ int	check_color(char *color)
 			ft_printf(2, "Wrong color value inserted.\n");
 		i++;
 	}
+	save_values(cub, split, type);
 	ft_free_m(split);
 	return (flag);
 }

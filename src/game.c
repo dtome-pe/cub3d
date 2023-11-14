@@ -118,6 +118,7 @@ static int	loop(t_cub *cub, t_mlx *mlx)
 	frame.ptr = mlx_new_image(mlx->mlx, W, H);
 	frame.addr = mlx_get_data_addr(frame.ptr, &frame.bpp,
 			&frame.line, &frame.endian);
+	draw_floor_ceiling(cub, &frame);
 	while (i < W)
 	{
 		cub->hit = 0;
@@ -138,8 +139,8 @@ void	game(t_cub *cub)
 	cub->mlx->mlx = mlx_init();
 	cub->mlx->win = mlx_new_window(cub->mlx->mlx, W, H, "cub3D");
 	init_game(cub, cub->mlx); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
-	mlx_hook(cub->mlx->win, 2, 1L << 0, key_press, cub);
-	mlx_hook(cub->mlx->win, 17, 0, x_press, game);
 	mlx_loop_hook(cub->mlx->mlx, loop, cub);
+	mlx_hook(cub->mlx->win, 2, 0, key_press, cub);
+	mlx_hook(cub->mlx->win, 17, 0, x_press, game);
 	mlx_loop(cub->mlx->mlx);
 }
