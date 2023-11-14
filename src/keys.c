@@ -5,6 +5,43 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+static void	move_left_right(t_cub *cub, int direction)
+{
+	if (direction == LEFT)
+	{
+		if (cub->map[ (int) (cub->pos.x - cub->dir.y * cub->move_speed)][(int) (cub->pos.y)] != '1') 
+			cub->pos.x -= cub->dir.y * cub->move_speed;
+    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y + cub->dir.x * cub->move_speed)] != '1') 
+			cub->pos.y += cub->dir.x * cub->move_speed;
+	}
+	else if (direction == RIGHT)
+	{
+		if (cub->map[ (int) (cub->pos.x + cub->dir.y * cub->move_speed)][(int) (cub->pos.y)] != '1') 
+			cub->pos.x += cub->dir.y * cub->move_speed;
+    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y - cub->dir.x * cub->move_speed)] != '1') 
+			cub->pos.y -= cub->dir.x * cub->move_speed;
+	}
+}
+
+static void	move_up_down(t_cub *cub, int direction)
+{
+	if (direction == UP)
+	{
+		if (cub->map[ (int) (cub->pos.x + cub->dir.x * cub->move_speed)][(int) (cub->pos.y)] != '1') 
+			cub->pos.x += cub->dir.x * cub->move_speed;
+    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y + cub->dir.y * cub->move_speed)] != '1') 
+			cub->pos.y += cub->dir.y * cub->move_speed;
+	}
+	else if (direction == DOWN)
+	{
+		if (cub->map[ (int) (cub->pos.x - cub->dir.x * cub->move_speed)][(int) (cub->pos.y)] != '1') 
+			cub->pos.x -= cub->dir.x * cub->move_speed;
+    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y - cub->dir.y * cub->move_speed)] != '1') 
+			cub->pos.y -= cub->dir.y * cub->move_speed;
+	}
+}
+
+
 static void	rotate(t_cub *cub, int direction)
 {	
 	double old_dir_x;
@@ -30,23 +67,16 @@ static void	rotate(t_cub *cub, int direction)
 
 int	key_press(int key, t_cub *cub)
 {
-	printf("key is %d\n", key);
 	if (key == ESC)
 		exit(0);
 	if (key == UP)
-	{
-		if (cub->map[ (int) (cub->pos.x + cub->dir.x * cub->move_speed)][(int) (cub->pos.y)] != '1') 
-			cub->pos.x += cub->dir.x * cub->move_speed;
-    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y + cub->dir.y * cub->move_speed)] != '1') 
-			cub->pos.y += cub->dir.y * cub->move_speed;
-	}
+		move_up_down(cub, UP);
 	if (key == DOWN)
-	{
-		if (cub->map[ (int) (cub->pos.x - cub->dir.x * cub->move_speed)][(int) (cub->pos.y)] != '1') 
-			cub->pos.x -= cub->dir.x * cub->move_speed;
-    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y - cub->dir.y * cub->move_speed)] != '1') 
-			cub->pos.y -= cub->dir.y * cub->move_speed;
-	}
+		move_up_down(cub, DOWN);
+	if (key == LEFT)
+		move_left_right(cub, LEFT);
+	if (key == RIGHT)
+		move_left_right(cub, RIGHT);
 	if (key == ROTLEFT)
 		rotate(cub, ROTLEFT);
 	if (key == ROTRIGHT)
