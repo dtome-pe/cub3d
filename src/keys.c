@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 18:56:45 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/11/14 19:06:08 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
@@ -9,17 +21,21 @@ static void	move_left_right(t_cub *cub, int direction)
 {
 	if (direction == LEFT)
 	{
-		if (cub->map[ (int) (cub->pos.x - cub->dir.y * cub->move_speed)][(int) (cub->pos.y)] != '1') 
-			cub->pos.x -= cub->dir.y * cub->move_speed;
-    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y + cub->dir.x * cub->move_speed)] != '1') 
-			cub->pos.y += cub->dir.x * cub->move_speed;
+		if (cub->map[(int)(cub->pos.x - cub->dir.y * cub->m)]
+			[(int)(cub->pos.y)] != '1')
+			cub->pos.x -= cub->dir.y * cub->m;
+		if (cub->map[(int)(cub->pos.x)]
+			[(int)(cub->pos.y + cub->dir.x * cub->m)] != '1')
+			cub->pos.y += cub->dir.x * cub->m;
 	}
 	else if (direction == RIGHT)
 	{
-		if (cub->map[ (int) (cub->pos.x + cub->dir.y * cub->move_speed)][(int) (cub->pos.y)] != '1') 
-			cub->pos.x += cub->dir.y * cub->move_speed;
-    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y - cub->dir.x * cub->move_speed)] != '1') 
-			cub->pos.y -= cub->dir.x * cub->move_speed;
+		if (cub->map[(int)(cub->pos.x + cub->dir.y * cub->m)]
+			[(int)(cub->pos.y)] != '1')
+			cub->pos.x += cub->dir.y * cub->m;
+		if (cub->map[(int)(cub->pos.x)]
+			[(int)(cub->pos.y - cub->dir.x * cub->m)] != '1')
+			cub->pos.y -= cub->dir.x * cub->m;
 	}
 }
 
@@ -27,41 +43,44 @@ static void	move_up_down(t_cub *cub, int direction)
 {
 	if (direction == UP)
 	{
-		if (cub->map[ (int) (cub->pos.x + cub->dir.x * cub->move_speed)][(int) (cub->pos.y)] != '1') 
-			cub->pos.x += cub->dir.x * cub->move_speed;
-    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y + cub->dir.y * cub->move_speed)] != '1') 
-			cub->pos.y += cub->dir.y * cub->move_speed;
+		if (cub->map[(int)(cub->pos.x + cub->dir.x * cub->m)]
+			[(int)(cub->pos.y)] != '1')
+			cub->pos.x += cub->dir.x * cub->m;
+		if (cub->map[(int)(cub->pos.x)]
+			[(int)(cub->pos.y + cub->dir.y * cub->m)] != '1')
+			cub->pos.y += cub->dir.y * cub->m;
 	}
 	else if (direction == DOWN)
 	{
-		if (cub->map[ (int) (cub->pos.x - cub->dir.x * cub->move_speed)][(int) (cub->pos.y)] != '1') 
-			cub->pos.x -= cub->dir.x * cub->move_speed;
-    	if(cub->map[(int) (cub->pos.x)][(int) (cub->pos.y - cub->dir.y * cub->move_speed)] != '1') 
-			cub->pos.y -= cub->dir.y * cub->move_speed;
+		if (cub->map[(int)(cub->pos.x - cub->dir.x * cub->m)]
+			[(int)(cub->pos.y)] != '1')
+			cub->pos.x -= cub->dir.x * cub->m;
+		if (cub->map[(int)(cub->pos.x)]
+			[(int)(cub->pos.y - cub->dir.y * cub->m)] != '1')
+			cub->pos.y -= cub->dir.y * cub->m;
 	}
 }
 
-
 static void	rotate(t_cub *cub, int direction)
-{	
-	double old_dir_x;
-	double old_plane_x;
+{
+	double	old_dir_x;
+	double	old_plane_x;
 
 	old_dir_x = cub->dir.x;
-	old_plane_x = cub->plane.x;
+	old_plane_x = cub->pl.x;
 	if (direction == ROTLEFT)
 	{
-      cub->dir.x = cub->dir.x * cos(cub->rot_speed) - cub->dir.y * sin(cub->rot_speed);
-      cub->dir.y = old_dir_x * sin(cub->rot_speed) + cub->dir.y * cos(cub->rot_speed);
-      cub->plane.x = cub->plane.x * cos(cub->rot_speed) - cub->plane.y * sin(cub->rot_speed);
-      cub->plane.y = old_plane_x * sin(cub->rot_speed) + cub->plane.y * cos(cub->rot_speed);
+		cub->dir.x = cub->dir.x * cos(cub->r) - cub->dir.y * sin(cub->r);
+		cub->dir.y = old_dir_x * sin(cub->r) + cub->dir.y * cos(cub->r);
+		cub->pl.x = cub->pl.x * cos(cub->r) - cub->pl.y * sin(cub->r);
+		cub->pl.y = old_plane_x * sin(cub->r) + cub->pl.y * cos(cub->r);
 	}
 	if (direction == ROTRIGHT)
 	{
-      cub->dir.x = cub->dir.x * cos(-cub->rot_speed) - cub->dir.y * sin(-cub->rot_speed);
-      cub->dir.y = old_dir_x * sin(-cub->rot_speed) + cub->dir.y * cos(-cub->rot_speed);
-      cub->plane.x = cub->plane.x * cos(-cub->rot_speed) - cub->plane.y * sin(-cub->rot_speed);
-      cub->plane.y = old_plane_x * sin(-cub->rot_speed) + cub->plane.y * cos(-cub->rot_speed);
+		cub->dir.x = cub->dir.x * cos(-cub->r) - cub->dir.y * sin(-cub->r);
+		cub->dir.y = old_dir_x * sin(-cub->r) + cub->dir.y * cos(-cub->r);
+		cub->pl.x = cub->pl.x * cos(-cub->r) - cub->pl.y * sin(-cub->r);
+		cub->pl.y = old_plane_x * sin(-cub->r) + cub->pl.y * cos(-cub->r);
 	}
 }
 

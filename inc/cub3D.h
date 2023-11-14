@@ -73,7 +73,7 @@ typedef struct s_cub
 	/*raycasting calculations*/
 	t_vec	pos;
 	t_vec	dir;
-	t_vec	plane;
+	t_vec	pl;
 	t_vec	ray;
 	t_vec	ray_map;
 	t_vec	dist;
@@ -88,8 +88,8 @@ typedef struct s_cub
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-	double	move_speed;
-	double	rot_speed;
+	double	m;
+	double	r;
 
 	/*floor-ceiling cast*/
 	char	**f_rgb;

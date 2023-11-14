@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_single.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 18:53:49 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/11/14 18:54:00 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
@@ -44,8 +56,8 @@ static int	check_visited(char **new)
 
 static void	dfs(char **new, int row, int col, int *line_len)
 {
-	if (col < 0 || row < 0 || row + 1 > ft_count_arr(new) 
-		|| col > line_len[row] || new[row][col] == '\0' 
+	if (col < 0 || row < 0 || row + 1 > ft_count_arr(new)
+		|| col > line_len[row] || new[row][col] == '\0'
 		|| new[row][col] == 'V' || new[row][col] == ' ')
 		return ;
 	new[row][col] = 'V';

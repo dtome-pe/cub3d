@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 18:52:41 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/11/14 18:52:54 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
@@ -21,7 +33,7 @@ static int	count_m(char **m)
 }
 
 static void	save_values(t_cub *cub, char **split, char *type)
-{	
+{
 	int	i;
 
 	i = 0;

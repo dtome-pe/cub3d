@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_print.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 18:55:28 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/11/14 18:55:38 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include <stdio.h>
@@ -18,7 +30,8 @@ void	print_vector(t_vec *vec)
 {
 	printf("x is %f, y is %f\n", vec->x, vec->y);
 }
-int		print_error(char *str)
+
+int	print_error(char *str)
 {
 	ft_printf(2, "%s\n", str);
 	return (1);

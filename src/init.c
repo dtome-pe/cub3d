@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/11/14 19:07:01 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
@@ -52,20 +64,6 @@ void	set_dir(t_vec *dir, char c)
 	else if (c == 'E')
 		vector(dir, 0, 1);
 }
-/*
-static void	sl_image_data(t_game *g)
-{
-	g->img[0].data = (int *)mlx_get_data_addr(g->img[0].img_ptr,
-			&g->img[0].bpp, &g->img[0].size_l, &g->img[0].endian);
-	g->img[1].data = (int *)mlx_get_data_addr(g->img[1].img_ptr,
-			&g->img[1].bpp, &g->img[1].size_l, &g->img[1].endian);
-	g->img[2].data = (int *)mlx_get_data_addr(g->img[2].img_ptr,
-			&g->img[2].bpp, &g->img[2].size_l, &g->img[2].endian);
-	g->img[3].data = (int *)mlx_get_data_addr(g->img[3].img_ptr,
-			&g->img[3].bpp, &g->img[3].size_l, &g->img[3].endian);
-	
-}
-*/
 
 void	init_game(t_cub *cub, t_mlx *mlx)
 {
@@ -73,12 +71,11 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 
 	pos = set_pos(cub);
 	set_dir(&cub->dir, pos);
-	vector(&cub->plane, 0, 0.66);
-	cub->move_speed = 0.20;
-	cub->rot_speed = 0.20;
+	vector(&cub->pl, 0, 0.66);
+	cub->m = 0.20;
+	cub->r = 0.10;
 	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
 	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
 	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
-	//sl_image_data(g);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 18:53:19 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/11/14 18:53:37 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 
@@ -65,7 +77,7 @@ static int	check_west(char **map)
 	col = 0;
 	while (map[row])
 	{
-		while (map[row][col] != '\0' && (map[row][col] != '0' 
+		while (map[row][col] != '\0' && (map[row][col] != '0'
 			&& !is_pos(map[row][col])))
 			col++;
 		if (map[row] && (map[row][col] == '0' || is_pos(map[row][col])))
@@ -113,8 +125,8 @@ int	check_map(char **map, int *line_len)
 
 	width = get_length(map);
 	height = get_height(map);
-	if (check_north(map, width, line_len) 
-		|| check_south(map, width, height, line_len) || check_west(map) 
+	if (check_north(map, width, line_len)
+		|| check_south(map, width, height, line_len) || check_west(map)
 		|| check_east(map, line_len))
 	{
 		ft_printf(2, "Map is not enclosed by walls.\n");

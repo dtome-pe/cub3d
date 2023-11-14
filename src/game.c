@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/11/14 19:01:55 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
 #include "../mlx_linux/mlx.h"
@@ -23,8 +35,8 @@ static void	get_draw(t_cub *cub)
 
 static void	initial_calc(t_cub *cub)
 {
-	vector(&cub->ray, cub->dir.x + cub->plane.x * cub->camera,
-		cub->dir.y + cub->plane.y * cub->camera); // direccion del rayo, que empieza en posicion de jugador.
+	vector(&cub->ray, cub->dir.x + cub->pl.x * cub->camera,
+		cub->dir.y + cub->pl.y * cub->camera); // direccion del rayo, que empieza en posicion de jugador.
 	vector(&cub->ray_map, (int) cub->pos.x, (int) cub->pos.y); // coordenada del cuadrado donde estamos, en integros.
 	vector(&cub->delta_dist, fabs(1 / cub->ray.x), fabs(1 / cub->ray.y)); // calculamos hipotenusa para calcular distancia para que siempre comprobemos si ha chocado en pared en cada limite de cuadrado
 	if (cub->ray.x < 0)  //comprobamos si el rayo es x negativo o no, para ir pasando cuadrado a cudardo por la izquierda o derecha

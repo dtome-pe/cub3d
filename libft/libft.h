@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 09:35:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/05 10:04:11 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/11/14 19:07:21 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,6 @@ void		ft_get_strlcpy(char *dst, const char *src,
 				size_t dstsize, unsigned int start);
 size_t		ft_get_strlen(const char *s);
 char		*ft_get_free(char *tmp);
-
-
 void		check_malloc_error(void *ptr);
 void		ft_free_m(char **m);
 void		ft_print_m(char **m);
