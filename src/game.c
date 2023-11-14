@@ -71,17 +71,17 @@ static void	dda(t_cub *cub)
 			    // Determine the cardinal direction of the hit wall
     		if (cub->hit_side == 0) // Vertical wall
 			{
-				if (cub->dist.x > 0)
-					cub->hit_direction = NORTH;
+				if (cub->step_x > 0)
+					cub->hit_direction = NORTH; //yellow
 				else
-					cub->hit_direction = SOUTH;
+					cub->hit_direction = SOUTH; //orange
 			}
     		else // Horizontal wall
 			{
-				if (cub->dist.y > 0)
-					cub->hit_direction = EAST;
+				if (cub->step_y > 0)
+					cub->hit_direction = WEST; // blue
 				else
-					cub->hit_direction = WEST;
+					cub->hit_direction = EAST; //green
 			}
 		}
 	}
