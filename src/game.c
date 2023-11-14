@@ -65,7 +65,7 @@ static void	dda(t_cub *cub)
 			cub->ray_map.y += cub->step_y;
 			cub->hit_side = 1; // pared Norte o Sud
 		}
-		if (cub->map[(int) cub->ray_map.x][(int) cub->ray_map.y] > 0)
+		if (cub->map[(int) cub->ray_map.x][(int) cub->ray_map.y] == '1')
 		{
 			cub->hit = 1;
 			    // Determine the cardinal direction of the hit wall
