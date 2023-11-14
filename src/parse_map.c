@@ -31,7 +31,7 @@ static int	map_charset(t_cub *cub, char *line)
 		}
 		else
 		{
-			ft_printf(2, "Wrong character in map.\n");
+			ft_printf(2, "Wrong character in map: %c.\n", line[i]);
 			return (1);
 		}
 	}
@@ -45,7 +45,7 @@ static int	check_elements(t_cub *cub)
 		|| !cub->ceiling_color || !cub->floor_color)
 	{
 		ft_printf(2, "Wrong element order. (Map is not the last element,");
-		ft_printf(2, " or there are missing elements\n");
+		ft_printf(2, " or there are missing elements)\n");
 		return (1);
 	}
 	else

@@ -66,7 +66,8 @@ static void	rotate(t_cub *cub, int direction)
 }
 
 int	key_press(int key, t_cub *cub)
-{
+{	
+	printf("key is %d\n", key);
 	if (key == ESC)
 		exit(0);
 	if (key == UP)
