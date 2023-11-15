@@ -7,13 +7,15 @@
 # define SOUTH 1
 # define WEST 2
 # define EAST 3
-//# define ESC (65307) linux
-//# define UP 119 linux
-// # define DOWN 115 linux
-// # define LEFT 97 linux
-// # define RIGHT 100 linux
-//# define ROTLEFT 65361 linux
-//# define ROTRIGHT 65363 linux
+
+/* # define ESC (65307)
+# define UP 119 
+# define DOWN 115
+# define LEFT 97 
+# define RIGHT 100
+# define ROTLEFT 65361
+# define ROTRIGHT 65363 */
+
 # define ESC 53
 # define UP 13
 # define DOWN 1
