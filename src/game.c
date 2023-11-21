@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 12:57:11 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:22:21 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	initial_calc(t_cub *cub)
 		cub->dir.y + cub->pl.y * cub->camera); // direccion del rayo, que empieza en posicion de jugador.
 	vector(&cub->ray_map, (int) cub->pos.x, (int) cub->pos.y); // coordenada del cuadrado donde estamos, en integros.
 	vector(&cub->delta_dist, fabs(1 / cub->ray.x), fabs(1 / cub->ray.y)); // calculamos hipotenusa para calcular distancia para que siempre comprobemos si ha chocado en pared en cada limite de cuadrado
-	if (cub->ray.x < 0)  //comprobamos si el rayo es x negativo o no, para ir pasando cuadrado a cudardo por la izquierda o derecha
+	if (cub->ray.x < 0)  //comprobamos si el rayo es x negativo o no, para ir pasando cuadrado a cuadrado por la izquierda o derecha
 	{
 		cub->step_x = -1;
 		cub->dist.x = (cub->pos.x - cub->ray_map.x) * cub->delta_dist.x;
@@ -99,22 +99,40 @@ static void	dda(t_cub *cub)
 	}
 }
 
+int	char_to_int(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+{
+	return (*(int *)(unsigned char [4]){b, g, r, t});
+}
+
+int	set_texture(char *addr)
+{
+	int	color;
+	color = char_to_int(addr[3], addr[0], addr[1], addr[2]);
+	return (color);
+}
+
 static void	draw(t_cub *cub, int w, t_img *frame)
 {
 	int	j;
+	int i;
 	int	color;
 
+	i = 0;
 	j = cub->draw_start;
-	if (cub->hit_direction == NORTH)
-		color = 0x00fefe00; // yellow
-	else if (cub->hit_direction == SOUTH)
-		color = 0x00FFBE33; // orange
-	else if (cub->hit_direction == WEST)
-		color = 0x003349FF; // blue
-	else if (cub->hit_direction == EAST)
-		color = 0x004CFF33; // green
 	while (j < cub->draw_end)
 	{
+		if (cub->hit_direction == NORTH)
+			//color = 0x00fefe00; // yellow
+			color = set_texture(cub->n->addr + (i * cub->n->line));
+		else if (cub->hit_direction == SOUTH)
+			//color = 0x00FFBE33; // orange
+			color = set_texture(cub->n->addr + (i * cub->n->line));
+		else if (cub->hit_direction == WEST)
+			//color = 0x003349FF; // blue
+			color = set_texture(cub->n->addr + (i * cub->n->line));
+		else if (cub->hit_direction == EAST)
+			//color = 0x004CFF33; // green
+			color = set_texture(cub->n->addr + (i * cub->n->line));
 		my_mlx_pixel_put(frame, w, j, color);
 		j++;
 	}

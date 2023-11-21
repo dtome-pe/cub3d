@@ -24,8 +24,12 @@
 # define ROTLEFT 123
 # define ROTRIGHT 124
 
-#include"../libft/libft.h"
-#include"../mlx_macos/mlx.h"
+# include "../libft/libft.h"
+# include "../mlx_macos/mlx.h"
+# include <math.h>
+#ifndef MPI
+#define MPI 3.14159265358979323846
+#endif
 
 typedef struct s_map
 {

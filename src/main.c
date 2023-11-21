@@ -6,13 +6,13 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:37 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 14:49:26 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:00:57 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 #include "../libft/libft.h"
-/*
+
 int	main(int argc, char **argv)
 {
 	t_cub	cub;
@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 	game(&cub);
 	free_cub(&cub);
 }
-*/
-/**/
+
+/*
 #include<stdio.h>
 
 typedef struct	s_data {
@@ -65,11 +65,11 @@ int	main(void)
 	int y2 = y / 2;
 	void	*relative_path = "textures/colorstone.xpm";
 	int color;
-	int i;
-	int j;
-	int i2;
-	int j2;
-	float	sp = 1.5;
+	float i;
+	float j;
+	float i2;
+	float j2;
+	float	sp = 4;
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, x, y, "Cub3D");
@@ -79,9 +79,10 @@ int	main(void)
 //	for (i = 0; i < 170; i += 1)
 //		printf("texture[%d] = <<%s>>\n", i, texture.addr + i);
 
-//	color = create_trgb(0, texture.addr[0], texture.addr[1], texture.addr[2]);
+	color = create_trgb(0, texture.addr[0], texture.addr[1], texture.addr[2]);
 //	printf("line = %d\n", texture.line_length);
-//	printf("color = %x\n", color);
+	printf("endian = %d\n", texture.endian);
+	printf("color = %x\n", color);
 //	printf("color = %x\n", 0x00FFFFFF);
 //	printf("aqui\n");
 
@@ -93,7 +94,7 @@ int	main(void)
 			color = create_trgb(texture.addr[3], texture.addr[0], texture.addr[1], texture.addr[2]);
 			for (j2 = 0; j2 < sp; j2++)
 				for (i2 = 0; i2 < sp; i2++)
-					my_mlx_pixel_put2(&img, 20 + (i * sp) + i2, 20 + (j * sp) + j2, color);
+					my_mlx_pixel_put2(&img, 20 + ((i * sp) + i2), 20 + ((j * sp) + j2), color);
 			texture.addr += 4;
 		}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
@@ -103,4 +104,4 @@ int	main(void)
 }
 
 //char *mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);
-/**/
+*/
