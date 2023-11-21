@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/15 09:57:02 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/11/21 12:57:11 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ static int	loop(t_cub *cub)
 
 void	game(t_cub *cub)
 {
-	cub->mlx = malloc(sizeof (t_mlx));
+	cub->mlx = malloc(sizeof(t_mlx));
 	cub->mlx->mlx = mlx_init();
 	cub->mlx->win = mlx_new_window(cub->mlx->mlx, W, H, "cub3D");
 	init_game(cub, cub->mlx); // inicializamos posicion, direccion inicial del jugador y el plano de camara.

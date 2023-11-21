@@ -20,16 +20,19 @@ OBJ_DIR 	= obj
 
 CFLAGS		= -Wall -Werror -Wextra -I inc/
 
+MLXFLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
+
+FSANITIZE	= -fsanitize=address
+
 CC			= gcc
 
 all: make_libft make_mini $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) inc/cub3D.h
-	$(CC) -g $(CFLAGS) $(OBJ) -fsanitize=address -Lmlx -lmlx -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft -o $(NAME)
+	$(CC) -g $(CFLAGS) $(OBJ) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(OBJ_DIR)/%.o : src/%.c inc/cub3D.h Makefile | $(OBJ_DIR)
-	$(CC) -c $(CFLAGS) $< -o $@ -fsanitize=address
-
+	$(CC) -c $(CFLAGS) $< -o $@
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 

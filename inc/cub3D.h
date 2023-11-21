@@ -24,6 +24,8 @@
 # define ROTLEFT 123
 # define ROTRIGHT 124
 
+#include"../libft/libft.h"
+#include"../mlx_macos/mlx.h"
 
 typedef struct s_map
 {
