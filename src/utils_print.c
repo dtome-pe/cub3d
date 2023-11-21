@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:55:28 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:55:38 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:42:50 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include <stdio.h>
+#include <cub3D.h>
 
 void	print_cub(t_cub *cub)
 {

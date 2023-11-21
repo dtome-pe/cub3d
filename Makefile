@@ -29,10 +29,10 @@ CC			= gcc
 all: make_libft make_mini $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) inc/cub3D.h
-	$(CC) -g $(CFLAGS) $(OBJ) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
+	$(CC) -g $(CFLAGS) $(OBJ) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -Iinc -o $(NAME)
 
 $(OBJ_DIR)/%.o : src/%.c inc/cub3D.h Makefile | $(OBJ_DIR)
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) -Iinc $< -o $@
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 

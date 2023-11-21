@@ -6,13 +6,13 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:29:57 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:36:33 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include "../mlx_linux/mlx.h"
+//#include "../libft/libft.h"
+//#include "../mlx_linux/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
 

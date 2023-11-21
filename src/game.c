@@ -6,16 +6,11 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:22:21 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:41:35 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include "../mlx_linux/mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cub3D.h>
 
 static void	get_draw(t_cub *cub)
 {

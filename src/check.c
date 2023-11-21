@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:51:28 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:51:29 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:41:28 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include <stdlib.h>
+#include <cub3D.h>
 
 static int	create_trgb(int t, int r, int g, int b)
 {

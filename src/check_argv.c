@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_argv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:52:23 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:52:30 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:39:12 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <fcntl.h>
-#include <unistd.h>
+#include <cub3D.h>
 
 static int	check_extension(char *file)
 {

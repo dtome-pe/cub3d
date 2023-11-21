@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:10 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:54:11 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:40:47 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include <fcntl.h>
-#include <unistd.h>
+#include <cub3D.h>
 
 static int	check_open(char *path)
 {

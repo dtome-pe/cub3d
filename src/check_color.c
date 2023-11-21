@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:52:41 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:52:54 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:40:29 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include <stdlib.h>
+#include <cub3D.h>
 
 static int	check_number(int number)
 {

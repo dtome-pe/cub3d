@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/15 09:55:46 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/11/21 17:41:43 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include "../mlx_linux/mlx.h"
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <cub3D.h>
 
 static void	move_left_right(t_cub *cub, int direction)
 {
@@ -83,6 +78,8 @@ static void	rotate(t_cub *cub, int direction)
 		cub->pl.y = old_plane_x * sin(-cub->r) + cub->pl.y * cos(-cub->r);
 	}
 }
+
+
 
 int	key_press(int key, t_cub *cub)
 {

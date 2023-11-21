@@ -26,9 +26,15 @@
 
 # include "../libft/libft.h"
 # include "../mlx_macos/mlx.h"
+//# include "../mlx_linux/mlx.h"
 # include <math.h>
-#ifndef MPI
-#define MPI 3.14159265358979323846
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+
+# ifndef MPI
+# define MPI 3.14159265358979323846
 #endif
 
 typedef struct s_map

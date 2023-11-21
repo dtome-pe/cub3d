@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:01 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:56:02 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:42:40 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include <stdlib.h>
+#include <cub3D.h>
 
 void	print_map(t_map *map)
 {

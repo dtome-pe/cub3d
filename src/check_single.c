@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_single.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:49 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:54:00 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:40:23 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
-#include <stdlib.h>
+#include <cub3D.h>
 
 static	char	**map_cpy(char **map)
 {

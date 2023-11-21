@@ -6,12 +6,11 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:37 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:00:57 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:41:50 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
+#include <cub3D.h>
 
 int	main(int argc, char **argv)
 {

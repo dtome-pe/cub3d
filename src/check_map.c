@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:19 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/14 18:53:37 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:40:25 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
-#include "../libft/libft.h"
+#include <cub3D.h>
 
 static int	check_north(char **map, int width, int *line_len)
 {
