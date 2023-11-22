@@ -1,8 +1,8 @@
 
 SO ./textures/colorstone.xpm
 WE ./textures/eagle.xpm
-EA ./textures/colorstone.xpm
-NO ./textures/eagle.xpm
+EA ./textures/wall1.xpm
+NO ./textures/wall3.xpm
 F 0,100,0
 C 123,30,250
 

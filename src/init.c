@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/22 19:03:01 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:00:03 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	set_dir(t_vec *dir, char c)
 		vector(dir, 0, 1);
 }
 
-void	get_data_img(t_img *texture, t_mlx *mlx)
+void	get_data_img(t_img *texture, t_mlx *mlx, char *path)
 {
-	texture = mlx_xpm_file_to_image(mlx->mlx, texture->path, &texture->width, &texture->height);
-	texture->addr = mlx_get_data_addr(texture->ptr, &texture->bpp, &texture->line, &texture->endian);
+	texture = mlx_xpm_file_to_image(mlx->mlx, path, &texture->w, &texture->h);
+	//texture->addr = mlx_get_data_addr(texture->ptr, &texture->bpp, &texture->line, &texture->endian);
 }
 
 void	init_game(t_cub *cub, t_mlx *mlx)
@@ -82,8 +82,17 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	cub->m = 0.20;
 	cub->r = 0.10;
 	//printf("n = %s\ns = %s\nw = %s\ne = %s\n", cub->n_p, cub->s_p, cub->w_p, cub->e_p);
-	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
-	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
-	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
-	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
+	/*
+	get_data_img(cub->n, mlx, cub->n_p);
+	get_data_img(cub->s, mlx, cub->s_p);
+	get_data_img(cub->w, mlx, cub->w_p);
+	get_data_img(cub->e, mlx, cub->e_p);
+	*/
+
+	cub->n->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
+	cub->s->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
+	cub->w->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
+	cub->e->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
+	
+	//cub->n->addr = mlx_get_data_addr(cub->n->ptr, &cub->n->bpp, &cub->n->line, &cub->n->endian);
 }
