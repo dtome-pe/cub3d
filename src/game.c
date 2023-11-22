@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:41:35 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:15:08 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static void	draw(t_cub *cub, int w, t_img *frame)
 	{
 		if (cub->hit_direction == NORTH)
 			//color = 0x00fefe00; // yellow
-			color = set_texture(cub->n->addr + (i * cub->n->line));
+			color = set_texture(cub->n->addr) + (i * cub->n->line);
 		else if (cub->hit_direction == SOUTH)
 			//color = 0x00FFBE33; // orange
 			color = set_texture(cub->n->addr + (i * cub->n->line));

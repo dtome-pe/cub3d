@@ -1,8 +1,8 @@
 
-SO ./textures/wall4.xpm
-WE ./textures/wall1.xpm
-EA ./textures/wall2.xpm
-NO ./textures/wall3.xpm
+SO ./textures/colorstone.xpm
+WE ./textures/eagle.xpm
+EA ./textures/colorstone.xpm
+NO ./textures/eagle.xpm
 F 0,100,0
 C 123,30,250
 
@@ -11,6 +11,6 @@ C 123,30,250
 10000000001
 10000100001
 10000000001
-10000N00001
+10000S00001
 10000000001
 11111111111
