@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:36:33 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:03:01 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ void	set_dir(t_vec *dir, char c)
 		vector(dir, 0, -1);
 	else if (c == 'E')
 		vector(dir, 0, 1);
+}
+
+void	get_data_img(t_img *texture, t_mlx *mlx)
+{
+	texture = mlx_xpm_file_to_image(mlx->mlx, texture->path, &texture->width, &texture->height);
+	texture->addr = mlx_get_data_addr(texture->ptr, &texture->bpp, &texture->line, &texture->endian);
 }
 
 void	init_game(t_cub *cub, t_mlx *mlx)
