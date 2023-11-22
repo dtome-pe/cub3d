@@ -57,6 +57,9 @@ typedef struct		s_img
 	int			bpp;	//when using ARGB this value is always 32
 	int			line;	//This value represents (your image width) * 4 which I will also explain after
 	int			endian;		//This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
+	int			width;
+	int			height;
+	char		*path;
 }			t_img;
 
 typedef struct s_mlx
