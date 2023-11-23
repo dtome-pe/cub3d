@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/23 17:56:40 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:30:22 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,41 +99,52 @@ int	char_to_int(unsigned char t, unsigned char r, unsigned char g, unsigned char
 	return (*(int *)(unsigned char [4]){b, g, r, t});
 }
 
-int	set_texture(char *addr, int line, int j)
+int	set_texture(char *addr, int line, int j, int r)
 {
 	int	color;
 
 	//printf("addr: <%s>, line: %d, j: %d\n", addr, line, j);
 	addr += line * j;
+	r++;
+	//rel = r / line;
 	color = char_to_int(addr[3], addr[0], addr[1], addr[2]);
+	return (color);
+}
+
+int	set_point(t_cub *cub, int j, int r)
+{
+	int color;
+
+	color = 0;
+	if (cub->hit_direction == NORTH)
+		color = set_texture(cub->n->addr, cub->n->line, j, r);
+	else if (cub->hit_direction == SOUTH)
+		color = set_texture(cub->s->addr, cub->s->line, j, r);
+	else if (cub->hit_direction == WEST)
+		color = set_texture(cub->w->addr, cub->w->line, j, r);
+	else if (cub->hit_direction == EAST)
+		color = set_texture(cub->e->addr, cub->e->line, j, r);
 	return (color);
 }
 
 static void	draw(t_cub *cub, int w, t_img *frame)
 {
-	int	j;
-	int i;
+	int j;
+	int r;
+//	float i;
+	float rel;
 	int	color;
 
-	i = 0;
-	j = cub->draw_start;
-	while (j < cub->draw_end)
+	j = 0;
+	r = cub->draw_end - cub->draw_start;
+	rel = 1;
+	//rel = r / cub->n->line;
+	while (j < r)
 	{
-		if (cub->hit_direction == NORTH)
-			//color = 0x00fefe00; // yellow
-			color = set_texture(cub->n->addr, cub->n->line, i);
-		else if (cub->hit_direction == SOUTH)
-			//color = 0x00FFBE33; // orange
-			color = set_texture(cub->s->addr, cub->s->line, i);
-		else if (cub->hit_direction == WEST)
-			//color = 0x003349FF; // blue
-			color = set_texture(cub->w->addr, cub->w->line, i);
-		else if (cub->hit_direction == EAST)
-			//color = 0x004CFF33; // green
-			color = set_texture(cub->e->addr, cub->e->line, i);
-		my_mlx_pixel_put(frame, w, j, color);
+		color = set_point(cub, j, r);
+		//for (i = 0; i < rel; i++)
+			my_mlx_pixel_put(frame, w, cub->draw_start + j, color);
 		j++;
-		i++;
 	}
 }
 
