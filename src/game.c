@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/22 18:59:34 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:56:40 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	set_texture(char *addr, int line, int j)
 {
 	int	color;
 
+	//printf("addr: <%s>, line: %d, j: %d\n", addr, line, j);
 	addr += line * j;
 	color = char_to_int(addr[3], addr[0], addr[1], addr[2]);
 	return (color);
@@ -132,6 +133,7 @@ static void	draw(t_cub *cub, int w, t_img *frame)
 			color = set_texture(cub->e->addr, cub->e->line, i);
 		my_mlx_pixel_put(frame, w, j, color);
 		j++;
+		i++;
 	}
 }
 
