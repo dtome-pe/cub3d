@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/22 20:00:03 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:37:44 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,23 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	vector(&cub->pl, 0, 0.66);
 	cub->m = 0.20;
 	cub->r = 0.10;
-	//printf("n = %s\ns = %s\nw = %s\ne = %s\n", cub->n_p, cub->s_p, cub->w_p, cub->e_p);
 	/*
 	get_data_img(cub->n, mlx, cub->n_p);
 	get_data_img(cub->s, mlx, cub->s_p);
 	get_data_img(cub->w, mlx, cub->w_p);
 	get_data_img(cub->e, mlx, cub->e_p);
 	*/
-
+	printf("n = %s\ns = %s\nw = %s\ne = %s\n", cub->n_p, cub->s_p, cub->w_p, cub->e_p);
 	cub->n->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
 	cub->s->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
+	printf("aqui\n");
 	cub->w->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
 	cub->e->ptr = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
+
+	cub->n->addr = mlx_get_data_addr(cub->n->ptr, &cub->n->bpp, &cub->n->line, &cub->n->endian);
+	cub->s->addr = mlx_get_data_addr(cub->s->ptr, &cub->s->bpp, &cub->s->line, &cub->s->endian);
+	cub->w->addr = mlx_get_data_addr(cub->w->ptr, &cub->w->bpp, &cub->w->line, &cub->w->endian);
+	cub->e->addr = mlx_get_data_addr(cub->e->ptr, &cub->e->bpp, &cub->e->line, &cub->e->endian);
 	
-	//cub->n->addr = mlx_get_data_addr(cub->n->ptr, &cub->n->bpp, &cub->n->line, &cub->n->endian);
+	printf("addr: <%s>, line: %d\n", cub->n->addr, cub->n->line);
 }

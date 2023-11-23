@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:37 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/22 19:32:11 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:36:49 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,40 +62,49 @@ int	main(void)
 	int y = 1080 / 2;
 	int x2 = x / 2;
 	int y2 = y / 2;
-	void	*relative_path = "textures/colorstone.xpm";
+	void	*path1 = "textures/colorstone.xpm";
+	//void	*path2 = "textures/wall1.xpm";
+	//void	*path3 = "textures/wall3.xpm";
+	//void	*path4 = "textures/eagle.xpm";
+
 	int color;
-	float i;
-	float j;
-	float i2;
-	float j2;
-	float	sp = 4;
+	int i;
+	int j;
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, x, y, "Cub3D");
-	texture.img = mlx_xpm_file_to_image(mlx, relative_path, &x2, &y2);
+	texture.img = mlx_xpm_file_to_image(mlx, path1, &x2, &y2);
 	texture.addr = mlx_get_data_addr(texture.img, &texture.bits_per_pixel, &texture.line_length, &texture.endian);
 //	printf("len = %zu\n", ft_strlen(texture.addr));
 //	for (i = 0; i < 170; i += 1)
 //		printf("texture[%d] = <<%s>>\n", i, texture.addr + i);
-
-	color = create_trgb(0, texture.addr[0], texture.addr[1], texture.addr[2]);
+	//color = create_trgb(0, texture.addr[0], texture.addr[1], texture.addr[2]);
 //	printf("line = %d\n", texture.line_length);
-	printf("endian = %d\n", texture.endian);
-	printf("color = %x\n", color);
+	//printf("endian = %d\n", texture.endian);
+	//printf("color = %x\n", color);
 //	printf("color = %x\n", 0x00FFFFFF);
-//	printf("aqui\n");
 
 	img.img = mlx_new_image(mlx, x, y);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	for (j = 0; j < texture.line_length / 4; j++)
-		for (i = 0; i < texture.line_length / 4; i++)
+	for (i = 0; i < texture.line_length / 4; i++)
+	{
+		char	*addr = texture.addr + i * 4;
+		for (j = 0; j < texture.line_length / 4; j++)
 		{
-			color = create_trgb(texture.addr[3], texture.addr[0], texture.addr[1], texture.addr[2]);
+			color = create_trgb(addr[3], addr[0], addr[1], addr[2]);
+			//
+			float i2;
+			float j2;
+			float	sp = 8 - cos(MPI / 4) * i / 10;
 			for (j2 = 0; j2 < sp; j2++)
 				for (i2 = 0; i2 < sp; i2++)
 					my_mlx_pixel_put2(&img, 20 + ((i * sp) + i2), 20 + ((j * sp) + j2), color);
-			texture.addr += 4;
+			//		
+			//		my_mlx_pixel_put2(&img, 20 + i, 20 + j, color);
+			addr += texture.line_length;
 		}
+		//texture.line_length--;
+	}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 //	mlx_put_image_to_window(mlx, mlx_win, texture.img, 120, 120);
 	mlx_loop(mlx);
