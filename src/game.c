@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/24 10:36:03 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:58:04 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ static void	dda(t_cub *cub)
     		if (cub->hit_side == 0) // Vertical wall
 			{
 				if (cub->step_x > 0)
-					cub->hit_direction = NORTH; //yellow
+					cub->hit_direction = SOUTH; //azul
 				else
-					cub->hit_direction = SOUTH; //orange
+					cub->hit_direction = NORTH; //rojo
 			}
     		else // Horizontal wall
 			{
 				if (cub->step_y > 0)
-					cub->hit_direction = WEST; // blue
+					cub->hit_direction = EAST; // blanco
 				else
-					cub->hit_direction = EAST; //green
+					cub->hit_direction = WEST; // verde
 			}
 		}
 	}
@@ -121,12 +121,16 @@ int	set_point(t_cub *cub, int w, int j, t_frame *data)
 	data->w = w;
 	if (cub->hit_direction == NORTH)
 		color = set_texture(cub->n->addr, cub->n->line, data);
+		//color = 0x00ff0000; //rojo
 	else if (cub->hit_direction == SOUTH)
 		color = set_texture(cub->s->addr, cub->s->line, data);
+		//color = 0x000000ff; //azul
 	else if (cub->hit_direction == WEST)
 		color = set_texture(cub->w->addr, cub->w->line, data);
+		//color = 0x0000ff00; //verde
 	else if (cub->hit_direction == EAST)
 		color = set_texture(cub->e->addr, cub->e->line, data);
+		//color = 0x00ffffff; //blanco
 	return (color);
 }
 
