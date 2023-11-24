@@ -68,6 +68,14 @@ typedef struct s_mlx
 	void	*win;
 }				t_mlx;
 
+typedef struct	s_frame
+{
+	int		j;
+	int		w;
+	float	r;
+	float	rel;
+}			t_frame;
+
 
 typedef struct s_cub
 {

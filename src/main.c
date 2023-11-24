@@ -6,12 +6,12 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:37 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/23 17:36:49 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:05:26 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-
+/**/
 int	main(int argc, char **argv)
 {
 	t_cub	cub;
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	game(&cub);
 	free_cub(&cub);
 }
-
+/**/
 /*
 #include<stdio.h>
 
@@ -88,16 +88,16 @@ int	main(void)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	for (i = 0; i < texture.line_length / 4; i++)
 	{
-		char	*addr = texture.addr + i * 4;
+		char	*addr = texture.addr;// + i * 4;
 		for (j = 0; j < texture.line_length / 4; j++)
 		{
 			color = create_trgb(addr[3], addr[0], addr[1], addr[2]);
 			//
-			float i2;
-			float j2;
-			float	sp = 8 - cos(MPI / 4) * i / 10;
+			float i2 = 0;
+			float j2 = 0;
+			float	sp = 3;//8 - cos(MPI / 4) * i / 10;
 			for (j2 = 0; j2 < sp; j2++)
-				for (i2 = 0; i2 < sp; i2++)
+				//for (i2 = 0; i2 < sp; i2++)
 					my_mlx_pixel_put2(&img, 20 + ((i * sp) + i2), 20 + ((j * sp) + j2), color);
 			//		
 			//		my_mlx_pixel_put2(&img, 20 + i, 20 + j, color);

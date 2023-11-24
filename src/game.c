@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/23 18:30:22 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:36:03 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,51 +99,56 @@ int	char_to_int(unsigned char t, unsigned char r, unsigned char g, unsigned char
 	return (*(int *)(unsigned char [4]){b, g, r, t});
 }
 
-int	set_texture(char *addr, int line, int j, int r)
+int	set_texture(char *addr, int line, t_frame *data)
 {
 	int	color;
 
 	//printf("addr: <%s>, line: %d, j: %d\n", addr, line, j);
-	addr += line * j;
-	r++;
-	//rel = r / line;
+	addr += line * data->j;
+	addr += data->w * 4;
+	data->rel = (float)data->r / (float)line;
+	//printf("line = %d, r = %f, rel = %f ", line, data->r, data->rel);
 	color = char_to_int(addr[3], addr[0], addr[1], addr[2]);
 	return (color);
 }
 
-int	set_point(t_cub *cub, int j, int r)
+int	set_point(t_cub *cub, int w, int j, t_frame *data)
 {
 	int color;
 
 	color = 0;
+	data->j = j;
+	data->w = w;
 	if (cub->hit_direction == NORTH)
-		color = set_texture(cub->n->addr, cub->n->line, j, r);
+		color = set_texture(cub->n->addr, cub->n->line, data);
 	else if (cub->hit_direction == SOUTH)
-		color = set_texture(cub->s->addr, cub->s->line, j, r);
+		color = set_texture(cub->s->addr, cub->s->line, data);
 	else if (cub->hit_direction == WEST)
-		color = set_texture(cub->w->addr, cub->w->line, j, r);
+		color = set_texture(cub->w->addr, cub->w->line, data);
 	else if (cub->hit_direction == EAST)
-		color = set_texture(cub->e->addr, cub->e->line, j, r);
+		color = set_texture(cub->e->addr, cub->e->line, data);
 	return (color);
 }
 
 static void	draw(t_cub *cub, int w, t_img *frame)
 {
-	int j;
-	int r;
-//	float i;
-	float rel;
+	float j;
+	t_frame	data;
 	int	color;
 
 	j = 0;
-	r = cub->draw_end - cub->draw_start;
-	rel = 1;
-	//rel = r / cub->n->line;
-	while (j < r)
+	data.r = cub->draw_end - cub->draw_start;
+	while (j < data.r)
 	{
-		color = set_point(cub, j, r);
-		//for (i = 0; i < rel; i++)
-			my_mlx_pixel_put(frame, w, cub->draw_start + j, color);
+		color = set_point(cub, w, j, &data);
+		//*
+		float i;
+		for (i = 0; i < data.rel; i++)
+		//
+		{
+			//printf("j = %f\n", j);
+			my_mlx_pixel_put(frame, w, cub->draw_start + j + i, color);
+		}
 		j++;
 	}
 }
