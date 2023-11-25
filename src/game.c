@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/24 10:58:04 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:38:17 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	set_texture(char *addr, int line, t_frame *data)
 	//printf("addr: <%s>, line: %d, j: %d\n", addr, line, j);
 	addr += line * data->j;
 	addr += data->w * 4;
-	data->rel = (float)data->r / (float)line;
+	data->sp = (float)data->r / (float)line;
 	//printf("line = %d, r = %f, rel = %f ", line, data->r, data->rel);
 	color = char_to_int(addr[3], addr[0], addr[1], addr[2]);
 	return (color);
@@ -136,9 +136,11 @@ int	set_point(t_cub *cub, int w, int j, t_frame *data)
 
 static void	draw(t_cub *cub, int w, t_img *frame)
 {
-	float j;
+	float	j;
 	t_frame	data;
-	int	color;
+	int		color;
+	float	y;
+	float	j2;
 
 	j = 0;
 	data.r = cub->draw_end - cub->draw_start;
@@ -146,12 +148,14 @@ static void	draw(t_cub *cub, int w, t_img *frame)
 	{
 		color = set_point(cub, w, j, &data);
 		//*
-		float i;
-		for (i = 0; i < data.rel; i++)
+		//data.sp = 2;
+		for (j2 = 0; j2 < data.sp; j2++)
 		//
 		{
 			//printf("j = %f\n", j);
-			my_mlx_pixel_put(frame, w, cub->draw_start + j + i, color);
+			printf("sp = %f\n", data.sp);
+			y = cub->draw_start + j + data.sp;
+			my_mlx_pixel_put(frame, w, y, color);
 		}
 		j++;
 	}
