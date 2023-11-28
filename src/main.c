@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:37 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/28 15:44:09 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:48:26 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(void)
 			float i2 = 0;
 			float j2 = 0;
 			for (j2 = 0; j2 < sp; j2++)
-				//for (i2 = 0; i2 < sp; i2++)
+				for (i2 = 0; i2 < sp; i2++)
 				{
 					float	x = 20 + i * sp + i2;
 					//float	y = 20 + j * (sp - i * 0.04) + i + j2;
