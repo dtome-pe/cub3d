@@ -8,9 +8,11 @@ MINI_DIR 	= mlx
 
 MINI 		= $(MINI_DIR)/libmlx.a
 
-SRC			= $(addprefix src/, main.c check_argv.c init.c parse.c parse_map.c utils_map.c free_cub.c check.c \
-				utils_print.c check_color.c check_map.c check_single.c check_map_aux.c game.c utils_vector.c \
-				check_textures.c keys.c utils_mlx.c floor_ceiling.c)
+FILES		= main check_argv init parse parse_map utils_map free_cub check \
+			  utils_print check_color check_map check_single check_map_aux game \
+			  utils_vector check_textures keys utils_mlx floor_ceiling draw
+
+SRC			= $(addprefix src/, $(addsuffix .c, $(FILES)))
 
 OBJ			= $(patsubst src/%.c, $(OBJ_DIR)/%.o, $(SRC))
 

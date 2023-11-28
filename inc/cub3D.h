@@ -156,6 +156,7 @@ int		is_pos(char c);
 /*game - raycasting*/
 void	init_game(t_cub *cub, t_mlx *mlx);
 void	game(t_cub *cub);
+void	draw(t_cub *cub, int w, t_img *frame);
 
 void	draw_floor_ceiling(t_cub *cub, t_img *frame);
 void	free_cub(t_cub *cub);
