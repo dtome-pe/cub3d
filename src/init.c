@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/23 17:54:16 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:22:12 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,8 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	cub->w->addr = mlx_get_data_addr(cub->w, &cub->w->bpp, &cub->w->line, &cub->w->endian);
 	cub->e->addr = mlx_get_data_addr(cub->e, &cub->e->bpp, &cub->e->line, &cub->e->endian);
 	
-	printf("addr: <%s>, line: %d\n", cub->n->addr, cub->n->line);
+	printf("height: <%d> = line: <%d>\n", cub->n_h, cub->n->line / 4);
+	printf("height: <%d> = line: <%d>\n", cub->s_h, cub->s->line / 4);
+	printf("height: <%d> = line: <%d>\n", cub->e_h, cub->e->line / 4);
+	printf("height: <%d> = line: <%d>\n", cub->w_h, cub->w->line / 4);
 }

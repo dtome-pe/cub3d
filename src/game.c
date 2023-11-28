@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/25 18:38:17 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:57:26 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,21 @@ int	set_texture(char *addr, int line, t_frame *data)
 	//printf("addr: <%s>, line: %d, j: %d\n", addr, line, j);
 	addr += line * data->j;
 	addr += data->w * 4;
+	line /= 4;
 	data->sp = (float)data->r / (float)line;
-	//printf("line = %d, r = %f, rel = %f ", line, data->r, data->rel);
+	//data->sp = (float)line / (float)data->r;
+	//printf("r = %f, line = %d, sp = %f ", data->r, line, data->sp);
 	color = char_to_int(addr[3], addr[0], addr[1], addr[2]);
 	return (color);
 }
 
-int	set_point(t_cub *cub, int w, int j, t_frame *data)
+int	set_point(t_cub *cub, t_frame *data)
 {
 	int color;
 
 	color = 0;
-	data->j = j;
-	data->w = w;
+	//data->j = j;
+	//data->w = w;
 	if (cub->hit_direction == NORTH)
 		color = set_texture(cub->n->addr, cub->n->line, data);
 		//color = 0x00ff0000; //rojo
@@ -134,7 +136,7 @@ int	set_point(t_cub *cub, int w, int j, t_frame *data)
 	return (color);
 }
 
-static void	draw(t_cub *cub, int w, t_img *frame)
+static void	draw_line(t_cub *cub, int w, t_img *frame, int line)
 {
 	float	j;
 	t_frame	data;
@@ -144,22 +146,40 @@ static void	draw(t_cub *cub, int w, t_img *frame)
 
 	j = 0;
 	data.r = cub->draw_end - cub->draw_start;
-	while (j < data.r)
+	while (j < line)
+	//while (j < data.r)
 	{
-		color = set_point(cub, w, j, &data);
-		//*
-		//data.sp = 2;
-		for (j2 = 0; j2 < data.sp; j2++)
-		//
+		data.j = j;
+		data.w = w;
+		color = set_point(cub, &data);
+		/**/for (j2 = 0; j2 < data.sp; j2++)/**/
 		{
 			//printf("j = %f\n", j);
-			printf("sp = %f\n", data.sp);
-			y = cub->draw_start + j + data.sp;
-			my_mlx_pixel_put(frame, w, y, color);
+			y = cub->draw_start + j * data.sp;
+			//printf("y = %f\n", y);
+			if (y < H)
+				my_mlx_pixel_put(frame, w, y, color);
 		}
 		j++;
 	}
 }
+
+static void	draw(t_cub *cub, int w, t_img *frame)
+{
+	if (cub->hit_direction == NORTH)
+		draw_line(cub, w, frame, cub->n->line / 4);
+		//draw_line(cub, w, frame);
+	else if (cub->hit_direction == SOUTH)
+		draw_line(cub, w, frame, cub->s->line / 4);
+		//draw_line(cub, w, frame);
+	else if (cub->hit_direction == WEST)
+		draw_line(cub, w, frame, cub->w->line / 4);
+		//draw_line(cub, w, frame);
+	else if (cub->hit_direction == EAST)
+		draw_line(cub, w, frame, cub->e->line / 4);
+		//draw_line(cub, w, frame);
+}
+
 
 static int	loop(t_cub *cub)
 {

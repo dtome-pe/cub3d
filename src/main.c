@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:37 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/25 18:27:25 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:44:09 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ int	main(void)
 				//for (i2 = 0; i2 < sp; i2++)
 				{
 					float	x = 20 + i * sp + i2;
-					float	y = 20 + j * (sp - i * 0.04) + i + j2;
+					//float	y = 20 + j * (sp - i * 0.04) + i + j2;
+					float	y = 20 + j * sp + j2;
 					my_mlx_pixel_put2(&img, x, y, color);
 				}
 			//		
