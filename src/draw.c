@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:16 by jgravalo          #+#    #+#             */
-/*   Updated: 2023/11/28 18:45:45 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:10:13 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	set_texture(char *addr, int line, t_frame *data)
 	line /= 4;
 	data->sp = (float)data->r / (float)line;
 	//printf("r = %f, line = %d, sp = %f ", data->r, line, data->sp);
-	color = char_to_int(addr[3], addr[0], addr[1], addr[2]);
+	color = char_to_int(addr[3], addr[2], addr[1], addr[0]);
 	return (color);
 }
 
