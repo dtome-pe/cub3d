@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:16 by jgravalo          #+#    #+#             */
-/*   Updated: 2023/11/28 19:10:13 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:51:39 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	draw_line(t_cub *cub, int w, t_img *frame, t_img *dir)
 	while (j < dir->line / 4)
 	{
 		data.j = j;
-		data.w = w;
+		data.w = w / 4;
 		color = set_texture(dir->addr, dir->line, &data);
 		/**/for (j2 = 0; j2 < data.sp; j2++)/**/
 		{
