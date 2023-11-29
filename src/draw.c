@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:16 by jgravalo          #+#    #+#             */
-/*   Updated: 2023/11/29 14:51:39 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:15:41 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,20 @@ int	char_to_int(unsigned char t, unsigned char r, unsigned char g, unsigned char
 	return (*(int *)(unsigned char [4]){b, g, r, t});
 }
 
-int	set_texture(char *addr, int line, t_frame *data)
+int	set_texture(char *addr, int line, int w, t_frame *data)
 {
 	int	color;
 
 	//printf("addr: <%s>, line: %d, j: %d\n", addr, line, j);
 	addr += line * data->j;
+	data->sp = (float)data->r / (float)(line / 4);
+	if ((float)data->r < (float)(line / 4))
+		data->w = w * 4;
+	else if ((float)data->r > (float)(line / 4))
+		data->w = w / 4;
+	else
+		data->w = w;
 	addr += data->w * 4;
-	line /= 4;
-	data->sp = (float)data->r / (float)line;
 	//printf("r = %f, line = %d, sp = %f ", data->r, line, data->sp);
 	color = char_to_int(addr[3], addr[2], addr[1], addr[0]);
 	return (color);
@@ -44,8 +49,7 @@ static void	draw_line(t_cub *cub, int w, t_img *frame, t_img *dir)
 	while (j < dir->line / 4)
 	{
 		data.j = j;
-		data.w = w / 4;
-		color = set_texture(dir->addr, dir->line, &data);
+		color = set_texture(dir->addr, dir->line, w, &data);
 		/**/for (j2 = 0; j2 < data.sp; j2++)/**/
 		{
 			//printf("j = %f\n", j);
