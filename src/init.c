@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/28 15:22:12 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:07:55 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	char	pos;
 
 	pos = set_pos(cub);
+	cub->pos_char = pos;
+	printf("pos char es %c\n", cub->pos_char);
 	set_dir(&cub->dir, pos);
 	vector(&cub->pl, 0, 0.66);
 	cub->m = 0.20;

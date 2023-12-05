@@ -6,17 +6,17 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/05 15:33:03 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:45:10 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-static void	move_left_right(t_cub *cub, int direction)
+static void	move_left(t_cub *cub)
 {
-	if (direction == LEFT)
+	if (cub->pos_char == 'N')
 	{	
-		ft_printf(1, "left\n");
+		printf("move left, pos char es n\n");
 		if (cub->map[(int)(cub->pos.x - cub->dir.y * cub->m)]
 			[(int)(cub->pos.y)] != '1')
 			cub->pos.x -= cub->dir.y * cub->m;
@@ -24,15 +24,39 @@ static void	move_left_right(t_cub *cub, int direction)
 			[(int)(cub->pos.y + cub->dir.x * cub->m)] != '1')
 			cub->pos.y += cub->dir.x * cub->m;
 	}
-	else if (direction == RIGHT)
+	else if (cub->pos_char == 'S')
 	{	
-		ft_printf(1, "right\n");
+		printf("move left, pos char es s\n");
 		if (cub->map[(int)(cub->pos.x + cub->dir.y * cub->m)]
 			[(int)(cub->pos.y)] != '1')
 			cub->pos.x += cub->dir.y * cub->m;
 		if (cub->map[(int)(cub->pos.x)]
 			[(int)(cub->pos.y - cub->dir.x * cub->m)] != '1')
 			cub->pos.y -= cub->dir.x * cub->m;
+	}
+}
+
+static void	move_right(t_cub *cub)
+{
+	if (cub->pos_char == 'N')
+	{	
+		printf("move right, pos char es n\n");
+		if (cub->map[(int)(cub->pos.x - cub->dir.y * cub->m)]
+			[(int)(cub->pos.y)] != '1')
+			cub->pos.x += cub->dir.y * cub->m;
+		if (cub->map[(int)(cub->pos.x)]
+			[(int)(cub->pos.y + cub->dir.x * cub->m)] != '1')
+			cub->pos.y -= cub->dir.x * cub->m;
+	}
+	else if (cub->pos_char == 'S')
+	{	
+		printf("move right, pos char es s\n");
+		if (cub->map[(int)(cub->pos.x + cub->dir.y * cub->m)]
+			[(int)(cub->pos.y)] != '1')
+			cub->pos.x -= cub->dir.y * cub->m;
+		if (cub->map[(int)(cub->pos.x)]
+			[(int)(cub->pos.y - cub->dir.x * cub->m)] != '1')
+			cub->pos.y += cub->dir.x * cub->m;
 	}
 }
 
@@ -60,28 +84,54 @@ static void	move_up_down(t_cub *cub, int direction)
 	}
 }
 
-static void	rotate(t_cub *cub, int direction)
+static void	rotate_left(t_cub *cub)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
 	old_dir_x = cub->dir.x;
 	old_plane_x = cub->pl.x;
-	if (direction == ROTLEFT)
+	if (cub->pos_char == 'N')
 	{	
-		ft_printf(1, "rot left\n");
+		ft_printf(1, "rot left pos n\n");
 		cub->dir.x = cub->dir.x * cos(cub->r) - cub->dir.y * sin(cub->r);
 		cub->dir.y = old_dir_x * sin(cub->r) + cub->dir.y * cos(cub->r);
 		cub->pl.x = cub->pl.x * cos(cub->r) - cub->pl.y * sin(cub->r);
 		cub->pl.y = old_plane_x * sin(cub->r) + cub->pl.y * cos(cub->r);
 	}
-	if (direction == ROTRIGHT)
+	else if (cub->pos_char == 'S')
 	{
-		ft_printf(1, "rot right\n");
+		ft_printf(1, "rot left pos s\n");
 		cub->dir.x = cub->dir.x * cos(-cub->r) - cub->dir.y * sin(-cub->r);
 		cub->dir.y = old_dir_x * sin(-cub->r) + cub->dir.y * cos(-cub->r);
 		cub->pl.x = cub->pl.x * cos(-cub->r) - cub->pl.y * sin(-cub->r);
 		cub->pl.y = old_plane_x * sin(-cub->r) + cub->pl.y * cos(-cub->r);
+	}
+}
+
+static void	rotate_right(t_cub *cub)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = cub->dir.x;
+	old_plane_x = cub->pl.x;
+	if (cub->pos_char == 'N')
+	{	
+
+		ft_printf(1, "rot right pos n\n");
+		cub->dir.x = cub->dir.x * cos(-cub->r) - cub->dir.y * sin(-cub->r);
+		cub->dir.y = old_dir_x * sin(-cub->r) + cub->dir.y * cos(-cub->r);
+		cub->pl.x = cub->pl.x * cos(-cub->r) - cub->pl.y * sin(-cub->r);
+		cub->pl.y = old_plane_x * sin(-cub->r) + cub->pl.y * cos(-cub->r);
+	}
+	else if (cub->pos_char == 'S')
+	{
+		ft_printf(1, "rot right pos s\n");
+		cub->dir.x = cub->dir.x * cos(cub->r) - cub->dir.y * sin(cub->r);
+		cub->dir.y = old_dir_x * sin(cub->r) + cub->dir.y * cos(cub->r);
+		cub->pl.x = cub->pl.x * cos(cub->r) - cub->pl.y * sin(cub->r);
+		cub->pl.y = old_plane_x * sin(cub->r) + cub->pl.y * cos(cub->r);
 	}
 }
 
@@ -96,13 +146,13 @@ int	key_press(int key, t_cub *cub)
 	if (key == DOWN)
 		move_up_down(cub, DOWN);
 	if (key == LEFT)
-		move_left_right(cub, LEFT);
+		move_left(cub);
 	if (key == RIGHT)
-		move_left_right(cub, RIGHT);
+		move_right(cub);
 	if (key == ROTLEFT)
-		rotate(cub, ROTLEFT);
+		rotate_left(cub);
 	if (key == ROTRIGHT)
-		rotate(cub, ROTRIGHT);
+		rotate_right(cub);
 	return (0);
 }
 

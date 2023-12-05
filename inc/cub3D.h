@@ -115,6 +115,7 @@ typedef struct s_cub
 	int		draw_end;
 	double	m;
 	double	r;
+	char	pos_char;
 
 	/*floor-ceiling cast*/
 	char	**f_rgb;
