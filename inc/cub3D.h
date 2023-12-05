@@ -19,10 +19,10 @@
 # define ESC 53
 # define UP 13
 # define DOWN 1
-# define LEFT 2
-# define RIGHT 0
-# define ROTLEFT 124
-# define ROTRIGHT 123
+# define RIGHT 2
+# define LEFT 0
+# define ROTRIGHT 124
+# define ROTLEFT 123
 
 # include "../libft/libft.h"
 # include "../mlx_macos/mlx.h"

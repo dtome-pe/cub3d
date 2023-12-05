@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:41:43 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:33:03 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include "../inc/cub3D.h"
 
 static void	move_left_right(t_cub *cub, int direction)
 {
 	if (direction == LEFT)
-	{
+	{	
+		ft_printf(1, "left\n");
 		if (cub->map[(int)(cub->pos.x - cub->dir.y * cub->m)]
 			[(int)(cub->pos.y)] != '1')
 			cub->pos.x -= cub->dir.y * cub->m;
@@ -24,7 +25,8 @@ static void	move_left_right(t_cub *cub, int direction)
 			cub->pos.y += cub->dir.x * cub->m;
 	}
 	else if (direction == RIGHT)
-	{
+	{	
+		ft_printf(1, "right\n");
 		if (cub->map[(int)(cub->pos.x + cub->dir.y * cub->m)]
 			[(int)(cub->pos.y)] != '1')
 			cub->pos.x += cub->dir.y * cub->m;
@@ -37,7 +39,8 @@ static void	move_left_right(t_cub *cub, int direction)
 static void	move_up_down(t_cub *cub, int direction)
 {
 	if (direction == UP)
-	{
+	{	
+		ft_printf(1, "up\n");
 		if (cub->map[(int)(cub->pos.x + cub->dir.x * cub->m)]
 			[(int)(cub->pos.y)] != '1')
 			cub->pos.x += cub->dir.x * cub->m;
@@ -46,7 +49,8 @@ static void	move_up_down(t_cub *cub, int direction)
 			cub->pos.y += cub->dir.y * cub->m;
 	}
 	else if (direction == DOWN)
-	{
+	{	
+		ft_printf(1, "down\n");
 		if (cub->map[(int)(cub->pos.x - cub->dir.x * cub->m)]
 			[(int)(cub->pos.y)] != '1')
 			cub->pos.x -= cub->dir.x * cub->m;
@@ -64,7 +68,8 @@ static void	rotate(t_cub *cub, int direction)
 	old_dir_x = cub->dir.x;
 	old_plane_x = cub->pl.x;
 	if (direction == ROTLEFT)
-	{
+	{	
+		ft_printf(1, "rot left\n");
 		cub->dir.x = cub->dir.x * cos(cub->r) - cub->dir.y * sin(cub->r);
 		cub->dir.y = old_dir_x * sin(cub->r) + cub->dir.y * cos(cub->r);
 		cub->pl.x = cub->pl.x * cos(cub->r) - cub->pl.y * sin(cub->r);
@@ -72,6 +77,7 @@ static void	rotate(t_cub *cub, int direction)
 	}
 	if (direction == ROTRIGHT)
 	{
+		ft_printf(1, "rot right\n");
 		cub->dir.x = cub->dir.x * cos(-cub->r) - cub->dir.y * sin(-cub->r);
 		cub->dir.y = old_dir_x * sin(-cub->r) + cub->dir.y * cos(-cub->r);
 		cub->pl.x = cub->pl.x * cos(-cub->r) - cub->pl.y * sin(-cub->r);
