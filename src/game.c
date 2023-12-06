@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/28 18:38:31 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:16:23 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ static void	get_draw(t_cub *cub)
 	cub->draw_end = cub->line_height / 2 + H / 2;
 	if (cub->draw_end >= H)
 		cub->draw_end = H - 1;
+	/*nuevos calculos iodev*/
+	if (cub->hit_side == 0)
+		cub->wall_x = cub->pos.y + cub->wall_dist * cub->ray.y;
+	else
+		cub->wall_x = cub->pos.x + cub->wall_dist * cub->ray.x;
+	cub->wall_x -= floor((cub->wall_x));
+	/*nuevos calculos iodev*/
 }
 
 static void	initial_calc(t_cub *cub)

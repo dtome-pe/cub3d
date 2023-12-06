@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/05 16:07:55 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:09:11 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	cub->w->addr = mlx_get_data_addr(cub->w, &cub->w->bpp, &cub->w->line, &cub->w->endian);
 	cub->e->addr = mlx_get_data_addr(cub->e, &cub->e->bpp, &cub->e->line, &cub->e->endian);
 	
-	printf("height: <%d> = line: <%d>\n", cub->n_h, cub->n->line / 4);
-	printf("height: <%d> = line: <%d>\n", cub->s_h, cub->s->line / 4);
-	printf("height: <%d> = line: <%d>\n", cub->e_h, cub->e->line / 4);
-	printf("height: <%d> = line: <%d>\n", cub->w_h, cub->w->line / 4);
+	printf("norte height: <%d> = width: <%d> = line: <%d>\n", cub->n_h, cub->n_w, cub->n->line / 4);
+	printf("sud height: <%d> = width: <%d> = line: <%d>\n", cub->s_h, cub->s_w, cub->s->line / 4);
+	printf("este height: <%d> = width: <%d> = line: <%d>\n", cub->e_h, cub->e_w, cub->e->line / 4);
+	printf("west height: <%d> = width: <%d> = line: <%d>\n", cub->w_h, cub->w_w, cub->w->line / 4);
 }

@@ -8,11 +8,9 @@ MINI_DIR 	= mlx
 
 MINI 		= $(MINI_DIR)/libmlx.a
 
-FILES		= main check_argv init parse parse_map utils_map free_cub check \
-			  utils_print check_color check_map check_single check_map_aux game \
-			  utils_vector check_textures keys utils_mlx floor_ceiling draw
-
-SRC			= $(addprefix src/, $(addsuffix .c, $(FILES)))
+SRC			= $(addprefix src/, main.c check_argv.c init.c parse.c parse_map.c utils_map.c free_cub.c check.c \
+				utils_print.c check_color.c check_map.c check_single.c check_map_aux.c game.c utils_vector.c \
+				check_textures.c keys.c utils_mlx.c floor_ceiling.c draw.c)
 
 OBJ			= $(patsubst src/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
@@ -22,19 +20,16 @@ OBJ_DIR 	= obj
 
 CFLAGS		= -Wall -Werror -Wextra -I inc/
 
-MLXFLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
-
-FSANITIZE	= -fsanitize=address
-
 CC			= gcc
 
-all: make_libft make_mini $(NAME)
+all: make_libft $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) inc/cub3D.h
-	$(CC) -g $(CFLAGS) $(OBJ) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -Iinc -o $(NAME)
+	$(CC) -g $(CFLAGS) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -L$(LIBFT_DIR) -lft -o $(NAME)
 
 $(OBJ_DIR)/%.o : src/%.c inc/cub3D.h Makefile | $(OBJ_DIR)
-	$(CC) -c $(CFLAGS) -Iinc $< -o $@
+	$(CC) -g -c $(CFLAGS) $< -o $@ 
+
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 
@@ -57,3 +52,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
