@@ -6,7 +6,7 @@
 /*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/06 14:09:11 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/12 11:23:12 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	set_pos(t_cub *cub)
 		{
 			if (is_pos(cub->map[x][y]))
 			{
-				vector(&cub->pos, x, y);
+				vector(&cub->pos, x + 0.5f, y + 0.5f);
 				return (cub->map[x][y]);
 			}
 			y++;
@@ -78,9 +78,12 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 
 	pos = set_pos(cub);
 	cub->pos_char = pos;
-	printf("pos char es %c\n", cub->pos_char);
+	printf("pos char es %c\n", pos);
 	set_dir(&cub->dir, pos);
-	vector(&cub->pl, 0, 0.66);
+	if (pos == 'N' || pos == 'S') 
+		vector(&cub->pl, 0, 0.66);
+	else
+		vector(&cub->pl, 0.66, 0);
 	cub->m = 0.20;
 	cub->r = 0.10;
 	/*

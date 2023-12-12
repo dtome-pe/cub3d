@@ -6,7 +6,7 @@
 /*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:16 by jgravalo          #+#    #+#             */
-/*   Updated: 2023/12/06 14:17:23 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/12 12:00:17 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ static void	draw_line(t_cub *cub, int w, t_img *frame, t_img *dir)
 		cub->text_pos += cub->step;
 		//data.j = j;
 		color = set_texture(dir->addr, dir->line, w, &data, dir, cub);
+ 		/* if (direction == NORTH)
+			color = 0xFF3333;
+		if (direction == SOUTH)
+			color = 0xE0FF33;
+		if (direction == WEST)
+			color = 0x9933FF;
+		if (direction == EAST)
+			color = 0x33FCFF; */
 		//j2 = 0;
 /*  		while (j2 < data.sp)*/
 	//	{
@@ -87,9 +95,9 @@ static void	draw_line(t_cub *cub, int w, t_img *frame, t_img *dir)
 void	draw(t_cub *cub, int w, t_img *frame)
 {
 	if (cub->hit_direction == NORTH)
-		draw_line(cub, w, frame, cub->n);
-	else if (cub->hit_direction == SOUTH)
 		draw_line(cub, w, frame, cub->s);
+	else if (cub->hit_direction == SOUTH)
+		draw_line(cub, w, frame, cub->n);
 	else if (cub->hit_direction == WEST)
 		draw_line(cub, w, frame, cub->w);
 	else if (cub->hit_direction == EAST)
