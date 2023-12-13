@@ -6,7 +6,7 @@
 /*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/12 11:23:12 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/13 10:36:01 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 
 	pos = set_pos(cub);
 	cub->pos_char = pos;
-	printf("pos char es %c\n", pos);
+	printf("pos char es %c\n", cub->pos_char);
 	set_dir(&cub->dir, pos);
 	if (pos == 'N' || pos == 'S') 
 		vector(&cub->pl, 0, 0.66);

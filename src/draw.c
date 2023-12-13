@@ -6,7 +6,7 @@
 /*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:16 by jgravalo          #+#    #+#             */
-/*   Updated: 2023/12/12 12:00:17 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/13 10:39:09 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,26 @@ static void	draw_line(t_cub *cub, int w, t_img *frame, t_img *dir)
 
 void	draw(t_cub *cub, int w, t_img *frame)
 {
-	if (cub->hit_direction == NORTH)
-		draw_line(cub, w, frame, cub->s);
-	else if (cub->hit_direction == SOUTH)
-		draw_line(cub, w, frame, cub->n);
-	else if (cub->hit_direction == WEST)
-		draw_line(cub, w, frame, cub->w);
-	else if (cub->hit_direction == EAST)
-		draw_line(cub, w, frame, cub->e);
+	if (cub->pos_char == 'N' || cub->pos_char == 'E')
+	{
+		if (cub->hit_direction == NORTH)
+			draw_line(cub, w, frame, cub->s);
+		else if (cub->hit_direction == SOUTH)
+			draw_line(cub, w, frame, cub->n);
+		else if (cub->hit_direction == WEST)
+			draw_line(cub, w, frame, cub->e);
+		else if (cub->hit_direction == EAST)
+			draw_line(cub, w, frame, cub->w);
+	}
+	else
+	{
+		if (cub->hit_direction == NORTH)
+			draw_line(cub, w, frame, cub->s);
+		else if (cub->hit_direction == SOUTH)
+			draw_line(cub, w, frame, cub->n);
+		else if (cub->hit_direction == WEST)
+			draw_line(cub, w, frame, cub->w);
+		else if (cub->hit_direction == EAST)
+			draw_line(cub, w, frame, cub->e);
+	}
 }
