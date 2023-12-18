@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/13 10:36:01 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/18 13:46:04 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,17 @@ static char	set_pos(t_cub *cub)
 void	set_dir(t_vec *dir, char c)
 {
 	if (c == 'N')
+	{
+		printf("dentro de n");
 		vector(dir, -1, 0);
+	}
 	else if (c == 'S')
 		vector(dir, 1, 0);
 	else if (c == 'W')
+	{
+		printf("dentro de w");
 		vector(dir, 0, -1);
+	}
 	else if (c == 'E')
 		vector(dir, 0, 1);
 }
@@ -95,7 +101,6 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	printf("n = %s\ns = %s\nw = %s\ne = %s\n", cub->n_p, cub->s_p, cub->w_p, cub->e_p);
 	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
-	printf("aqui\n");
 	cub->w= mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
 	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
 

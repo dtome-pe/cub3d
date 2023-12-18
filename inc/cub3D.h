@@ -8,6 +8,7 @@
 # define WEST 2
 # define EAST 3
 
+/*
 # define ESC (65307)
 # define UP 119 
 # define DOWN 115
@@ -15,14 +16,15 @@
 # define RIGHT 100
 # define ROTLEFT 65361
 # define ROTRIGHT 65363
+*/
 
-/* # define ESC 53
+# define ESC 53
 # define UP 13
 # define DOWN 1
 # define RIGHT 2
 # define LEFT 0
 # define ROTRIGHT 124
-# define ROTLEFT 123 */
+# define ROTLEFT 123
 
 # include "../libft/libft.h"
 # include "../mlx_macos/mlx.h"

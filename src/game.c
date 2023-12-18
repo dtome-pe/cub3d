@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/12 11:01:49 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/18 13:52:38 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ static void	get_draw(t_cub *cub)
 }
 
 static void	initial_calc(t_cub *cub)
-{
-	vector(&cub->ray, cub->dir.x + cub->pl.x * cub->camera,
-		cub->dir.y + cub->pl.y * cub->camera); // direccion del rayo, que empieza en posicion de jugador.
+{	
+   if (cub->pos_char == 'N' || cub->pos_char == 'E')
+		vector(&cub->ray, cub->dir.x + cub->pl.x * cub->camera,
+			cub->dir.y + cub->pl.y * cub->camera); // direccion del rayo, que empieza en posicion de jugador.
+	else
+		vector(&cub->ray, cub->dir.y + cub->pl.y * cub->camera,
+			cub->dir.x + cub->pl.x * cub->camera);
 	vector(&cub->ray_map, (int) cub->pos.x, (int) cub->pos.y); // coordenada del cuadrado donde estamos, en integros.
 	vector(&cub->delta_dist, fabs(1 / cub->ray.x), fabs(1 / cub->ray.y)); // calculamos hipotenusa para calcular distancia para que siempre comprobemos si ha chocado en pared en cada limite de cuadrado
 	if (cub->ray.x < 0)  //comprobamos si el rayo es x negativo o no, para ir pasando cuadrado a cuadrado por la izquierda o derecha
