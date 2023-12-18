@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/18 18:36:34 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:22:13 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-//#include "../libft/libft.h"
-//#include "../mlx_linux/mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -54,28 +52,34 @@ static char	set_pos(t_cub *cub)
 	return (0);
 }
 
-void	set_dir(t_vec *dir, char c)
+void	set_dir(t_vec *dir, char c, t_cub *cub)
 {
 	if (c == 'N')
 	{
-		printf("dentro de n");
 		vector(dir, -1, 0);
+		vector(&cub->pl, 0, 0.66);
 	}
 	else if (c == 'S')
+	{
 		vector(dir, 1, 0);
+		vector(&cub->pl, 0, -0.66);
+	}
 	else if (c == 'W')
 	{
-		printf("dentro de w");
 		vector(dir, 0, -1);
+		vector(&cub->pl, -0.66, 0);
 	}
 	else if (c == 'E')
+	{
 		vector(dir, 0, 1);
+		vector(&cub->pl, 0.66, 0);
+	}
 }
 
-void	get_data_img(t_img *texture, t_mlx *mlx, char *path)
+static void	set_h_w(t_img *img, int w, int h)
 {
-	texture = mlx_xpm_file_to_image(mlx->mlx, path, &texture->w, &texture->h);
-	//texture->addr = mlx_get_data_addr(texture->ptr, &texture->bpp, &texture->line, &texture->endian);
+	img->w = w;
+	img->h = h;
 }
 
 void	init_game(t_cub *cub, t_mlx *mlx)
@@ -84,33 +88,23 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 
 	pos = set_pos(cub);
 	cub->pos_char = pos;
-	printf("pos char es %c\n", cub->pos_char);
-	set_dir(&cub->dir, pos);
-	if (pos == 'N' || pos == 'S') 
-		vector(&cub->pl, 0, 0.66);
-	else
-		vector(&cub->pl, 0.66, 0);
+	set_dir(&cub->dir, pos, cub);
 	cub->m = 0.20;
 	cub->r = 0.10;
-	/*
-	get_data_img(cub->n, mlx, cub->n_p);
-	get_data_img(cub->s, mlx, cub->s_p);
-	get_data_img(cub->w, mlx, cub->w_p);
-	get_data_img(cub->e, mlx, cub->e_p);
-	*/
-	printf("n = %s\ns = %s\nw = %s\ne = %s\n", cub->n_p, cub->s_p, cub->w_p, cub->e_p);
 	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
+	set_h_w(cub->n, cub->n_w, cub->n_h);
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
-	cub->w= mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
+	set_h_w(cub->s, cub->s_w, cub->s_h);
+	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
+	set_h_w(cub->w, cub->w_w, cub->w_h);
 	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
-
-	cub->n->addr = mlx_get_data_addr(cub->n, &cub->n->bpp, &cub->n->line, &cub->n->endian);
-	cub->s->addr = mlx_get_data_addr(cub->s, &cub->s->bpp, &cub->s->line, &cub->s->endian);
-	cub->w->addr = mlx_get_data_addr(cub->w, &cub->w->bpp, &cub->w->line, &cub->w->endian);
-	cub->e->addr = mlx_get_data_addr(cub->e, &cub->e->bpp, &cub->e->line, &cub->e->endian);
-	
-	printf("norte height: <%d> = width: <%d> = line: <%d>\n", cub->n_h, cub->n_w, cub->n->line / 4);
-	printf("sud height: <%d> = width: <%d> = line: <%d>\n", cub->s_h, cub->s_w, cub->s->line / 4);
-	printf("este height: <%d> = width: <%d> = line: <%d>\n", cub->e_h, cub->e_w, cub->e->line / 4);
-	printf("west height: <%d> = width: <%d> = line: <%d>\n", cub->w_h, cub->w_w, cub->w->line / 4);
+	set_h_w(cub->e, cub->e_w, cub->e_h);
+	cub->n->addr = mlx_get_data_addr(cub->n,
+			&cub->n->bpp, &cub->n->line, &cub->n->endian);
+	cub->s->addr = mlx_get_data_addr(cub->s,
+			&cub->s->bpp, &cub->s->line, &cub->s->endian);
+	cub->w->addr = mlx_get_data_addr(cub->w,
+			&cub->w->bpp, &cub->w->line, &cub->w->endian);
+	cub->e->addr = mlx_get_data_addr(cub->e,
+			&cub->e->bpp, &cub->e->line, &cub->e->endian);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
+/*   Updated: 2023/12/18 20:24:52 by dtome-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -7,16 +19,6 @@
 # define SOUTH 1
 # define WEST 2
 # define EAST 3
-
-/*
-# define ESC (65307)
-# define UP 119 
-# define DOWN 115
-# define LEFT 97 
-# define RIGHT 100
-# define ROTLEFT 65361
-# define ROTRIGHT 65363
-*/
 
 # define ESC 53
 # define UP 13
@@ -28,16 +30,12 @@
 
 # include "../libft/libft.h"
 # include "../mlx_macos/mlx.h"
-//# include "../mlx_linux/mlx.h"
+
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-
-# ifndef MPI
-# define MPI 3.14159265358979323846
-#endif
 
 typedef struct s_map
 {
@@ -52,13 +50,13 @@ typedef struct s_vec
 	double	y;
 }				t_vec;
 
-typedef struct		s_img
+typedef struct s_img
 {
 	void		*ptr;
-	char		*addr;		// In my code I changed this to int *, which I will explain in a second
-	int			bpp;	//when using ARGB this value is always 32
-	int			line;	//This value represents (your image width) * 4 which I will also explain after
-	int			endian;		//This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
+	char		*addr;
+	int			bpp;
+	int			line;
+	int			endian;
 	int			w;
 	int			h;
 	char		*p;
@@ -69,15 +67,6 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*win;
 }				t_mlx;
-
-typedef struct	s_frame
-{
-	int		j;
-	int		w;
-	float	r;
-	float	sp;
-}			t_frame;
-
 
 typedef struct s_cub
 {
@@ -132,7 +121,6 @@ typedef struct s_cub
 	int		f_color;
 	int		c_color;		
 
-
 	/*game images*/
 	t_img	*n;
 	int		n_w;
@@ -167,6 +155,7 @@ int		is_pos(char c);
 void	init_game(t_cub *cub, t_mlx *mlx);
 void	game(t_cub *cub);
 void	draw(t_cub *cub, int w, t_img *frame);
+int		render_loop(t_cub *cub);
 
 void	draw_floor_ceiling(t_cub *cub, t_img *frame);
 void	free_cub(t_cub *cub);
