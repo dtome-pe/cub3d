@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:43 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/18 13:52:38 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:38:26 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,24 @@ static void	get_draw(t_cub *cub)
 
 static void	initial_calc(t_cub *cub)
 {	
-   if (cub->pos_char == 'N' || cub->pos_char == 'E')
+/*  	if (cub->pos_char == 'N' || cub->pos_char == 'E')
+   { */
+ 		/* printf("dir: ");
+		print_vector(&cub->dir); */
+		/* printf("pl: ");
+		print_vector(&cub->pl);  */
 		vector(&cub->ray, cub->dir.x + cub->pl.x * cub->camera,
 			cub->dir.y + cub->pl.y * cub->camera); // direccion del rayo, que empieza en posicion de jugador.
-	else
-		vector(&cub->ray, cub->dir.y + cub->pl.y * cub->camera,
-			cub->dir.x + cub->pl.x * cub->camera);
+   //}
+/* 	else
+	{
+	printf("dir: ");
+		print_vector(&cub->dir);
+		printf("pl: ");
+		print_vector(&cub->pl);
+		vector(&cub->ray, (cub->dir.y + cub->pl.y * cub->camera),
+			(cub->dir.x + cub->pl.x * cub->camera));
+	} */
 	vector(&cub->ray_map, (int) cub->pos.x, (int) cub->pos.y); // coordenada del cuadrado donde estamos, en integros.
 	vector(&cub->delta_dist, fabs(1 / cub->ray.x), fabs(1 / cub->ray.y)); // calculamos hipotenusa para calcular distancia para que siempre comprobemos si ha chocado en pared en cada limite de cuadrado
 	if (cub->ray.x < 0)  //comprobamos si el rayo es x negativo o no, para ir pasando cuadrado a cuadrado por la izquierda o derecha
@@ -136,8 +148,11 @@ void	game(t_cub *cub)
 	cub->mlx->mlx = mlx_init();
 	cub->mlx->win = mlx_new_window(cub->mlx->mlx, W, H, "cub3D");
 	init_game(cub, cub->mlx); // inicializamos posicion, direccion inicial del jugador y el plano de camara.
+	printf("dir: ");
+		print_vector(&cub->dir);
 	mlx_loop_hook(cub->mlx->mlx, loop, cub);
-	mlx_hook(cub->mlx->win, 2, 1L<<0, key_press, cub);
+	//mlx_hook(cub->mlx->win, 2, 1L<<0, key_press, cub);
+	mlx_hook(cub->mlx->win, 2, 02, key_press, cub);
 	mlx_hook(cub->mlx->win, 17, 0, x_press, game);
 	mlx_loop(cub->mlx->mlx);
 }

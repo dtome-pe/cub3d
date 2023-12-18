@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/18 13:49:54 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:34:42 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	move_left(t_cub *cub)
 {
-	if (cub->pos_char == 'N' || cub->pos_char == 'E')
-	{	
+/* 	if (cub->pos_char == 'N' || cub->pos_char == 'E')
+	{ */	
 		printf("move left, pos char es n\n");
 		if (cub->map[(int)(cub->pos.x - cub->dir.y * cub->m)]
 			[(int)(cub->pos.y)] != '1')
@@ -23,8 +23,8 @@ static void	move_left(t_cub *cub)
 		if (cub->map[(int)(cub->pos.x)]
 			[(int)(cub->pos.y + cub->dir.x * cub->m)] != '1')
 			cub->pos.y += cub->dir.x * cub->m;
-	}
-	else if (cub->pos_char == 'S' || cub->pos_char == 'W')
+	//}
+/* 	else if (cub->pos_char == 'S' || cub->pos_char == 'W')
 	{	
 		printf("move left, pos char es s\n");
 		if (cub->map[(int)(cub->pos.x + cub->dir.y * cub->m)]
@@ -33,13 +33,13 @@ static void	move_left(t_cub *cub)
 		if (cub->map[(int)(cub->pos.x)]
 			[(int)(cub->pos.y - cub->dir.x * cub->m)] != '1')
 			cub->pos.y -= cub->dir.x * cub->m;
-	}
+	} */
 }
 
 static void	move_right(t_cub *cub)
 {
-	if (cub->pos_char == 'N' || cub->pos_char == 'E')
-	{	
+/* 	if (cub->pos_char == 'N' || cub->pos_char == 'E')
+	{ */	
 		printf("move right, pos char es n\n");
 		if (cub->map[(int)(cub->pos.x - cub->dir.y * cub->m)]
 			[(int)(cub->pos.y)] != '1')
@@ -47,8 +47,8 @@ static void	move_right(t_cub *cub)
 		if (cub->map[(int)(cub->pos.x)]
 			[(int)(cub->pos.y + cub->dir.x * cub->m)] != '1')
 			cub->pos.y -= cub->dir.x * cub->m;
-	}
-	else if (cub->pos_char == 'S' || cub->pos_char == 'W')
+//	}
+/* 	else if (cub->pos_char == 'S' || cub->pos_char == 'W')
 	{	
 		printf("move right, pos char es s\n");
 		if (cub->map[(int)(cub->pos.x + cub->dir.y * cub->m)]
@@ -57,13 +57,13 @@ static void	move_right(t_cub *cub)
 		if (cub->map[(int)(cub->pos.x)]
 			[(int)(cub->pos.y - cub->dir.x * cub->m)] != '1')
 			cub->pos.y += cub->dir.x * cub->m;
-	}
+	} */
 }
 
 static void	move_up_down(t_cub *cub, int direction)
-{
-	if (direction == UP)
-	{	
+{	
+ 	if (direction == UP)
+	{ 
 		ft_printf(1, "up\n");
 		if (cub->map[(int)(cub->pos.x + cub->dir.x * cub->m)]
 			[(int)(cub->pos.y)] != '1')
@@ -91,6 +91,8 @@ static void	rotate_left(t_cub *cub)
 
 	old_dir_x = cub->dir.x;
 	old_plane_x = cub->pl.x;
+	printf("dir: ");
+		print_vector(&cub->dir);
 	if (cub->pos_char == 'N' || cub->pos_char == 'E')
 	{	
 		ft_printf(1, "rot left pos n\n");
@@ -116,6 +118,8 @@ static void	rotate_right(t_cub *cub)
 
 	old_dir_x = cub->dir.x;
 	old_plane_x = cub->pl.x;
+	printf("dir: ");
+		print_vector(&cub->dir);
 	if (cub->pos_char == 'N' || cub->pos_char == 'E')
 	{	
 
@@ -134,8 +138,6 @@ static void	rotate_right(t_cub *cub)
 		cub->pl.y = old_plane_x * sin(cub->r) + cub->pl.y * cos(cub->r);
 	}
 }
-
-
 
 int	key_press(int key, t_cub *cub)
 {
