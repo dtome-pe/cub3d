@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/19 10:04:42 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/19 15:15:21 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ int		x_press(void);
 /*map utils*/
 
 void	print_map(t_map *map);
+void	print_map2(char **map);
 t_map	*ft_mapnew(char *content);
 void	ft_mapback(t_map **lst, t_map *new);
 t_map	*ft_maplast(t_map *lst);

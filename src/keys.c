@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/19 09:39:47 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2023/12/19 14:48:17 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	move_left_right(t_cub *cub, int direction)
 {
-	print_vector(&cub->pos);
+	//print_vector(&cub->pos);
 	if (direction == LEFT)
 	{
 		if (cub->map[(int)(cub->pos.x - cub->dir.y * cub->m)]
@@ -37,7 +37,7 @@ static void	move_left_right(t_cub *cub, int direction)
 
 static void	move_up_down(t_cub *cub, int direction)
 {
-	print_vector(&cub->pos);
+	//print_vector(&cub->pos);
 	if (direction == UP)
 	{
 		if (cub->map[(int)(cub->pos.x + cub->dir.x * cub->m)]
@@ -85,7 +85,7 @@ static void	rotate(t_cub *cub, int direction)
 
 int	key_press(int key, t_cub *cub)
 {	
-	printf("key is %d\n", key);
+	//printf("key is %d\n", key);
 	if (key == ESC)
 		exit(0);
 	if (key == UP || key == DOWN)
