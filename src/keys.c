@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:45 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/18 19:53:46 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/12/19 09:39:47 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ static void	rotate(t_cub *cub, int direction)
 }
 
 int	key_press(int key, t_cub *cub)
-{
+{	
+	printf("key is %d\n", key);
 	if (key == ESC)
 		exit(0);
 	if (key == UP || key == DOWN)

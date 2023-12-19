@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:19:01 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/18 20:21:47 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:02:18 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ int	render_loop(t_cub *cub)
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx->mlx, cub->mlx->win, frame.ptr, 0, 0);
+	mlx_destroy_image(cub->mlx->mlx, frame.ptr);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/18 20:24:52 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2023/12/19 10:04:42 by theonewhokn      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define WEST 2
 # define EAST 3
 
+/*mac macros*/
 # define ESC 53
 # define UP 13
 # define DOWN 1
@@ -27,6 +28,15 @@
 # define LEFT 0
 # define ROTRIGHT 124
 # define ROTLEFT 123
+
+/*linux macros*/
+/* # define ESC 65307
+# define UP 119
+# define DOWN 115
+# define RIGHT 100
+# define LEFT 97
+# define ROTRIGHT 65363
+# define ROTLEFT 65361 */
 
 # include "../libft/libft.h"
 # include "../mlx_macos/mlx.h"
