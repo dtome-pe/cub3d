@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:01 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/19 15:21:08 by jgravalo         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:43:35 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	print_map2(char **map)
 	{
 		for (i = 0; i < width; i++)
 		{
-			//if (map[j][i])
-			//if (!map[j][i - 1] && !map[j][i + 1]
-			//	&& !map[j - 1][i] && !map[j + 1][i])
-			//if (map[j][i] != '1')
 			if (map[j][i])
 				printf("%c", map[j][i]);
 			else

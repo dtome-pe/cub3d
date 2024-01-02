@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:19 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/19 16:39:17 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/02 14:17:42 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static int	check_north(char **map, int width, int *line_len)
 		{
 			if (row == 0)
 			{
-				printf("norte mal\n");
+				//printf("norte mal\n");
 				return (1);
 			}
 			if (line_len[row - 1] < col || map[row - 1][col] != '1')
 			{
-				printf("norte mal\n");
+				//printf("norte mal\n");
 				return (1);
 			}
 		}
@@ -43,7 +43,7 @@ static int	check_north(char **map, int width, int *line_len)
 		row = 0;
 		col++;
 	}
-	printf("norte bien\n");
+	//printf("norte bien\n");
 	return (0);
 }
 
@@ -97,19 +97,19 @@ static int	check_west(char **map)
 		{
 			if (col == 0)
 			{
-				printf("oeste mal\n");
+				//printf("oeste mal\n");
 				return (1);
 			}
 			if (map[row][col - 1] != '1')
 			{
-				printf("oeste mal\n");
+				//printf("oeste mal\n");
 				return (1);
 			}
 		}
 		row++;
 		col = 0;
 	}
-	printf("oeste bien\n");
+	//printf("oeste bien\n");
 	return (0);
 }
 
@@ -128,12 +128,12 @@ static int	check_east(char **map, int *line_len)
 		{
 			if (col == line_len[row])
 			{
-				printf("este mal\n");
+				//printf("este mal\n");
 				return (1);
 			}
 			if (map[row][col + 1] != '1')
 			{
-				printf("este mal\n");
+				//printf("este mal\n");
 				return (1);
 			}
 		}
@@ -141,7 +141,7 @@ static int	check_east(char **map, int *line_len)
 		if (map[row])
 			col = line_len[row];
 	}
-	printf("este bien\n");
+	//printf("este bien\n");
 	return (0);
 }
 
@@ -159,12 +159,12 @@ static int	check_south(char **map, int height, int width)
 		//|| map[height - 1][i - 1] == '0')
 		&& map[height][i] != '1')
 		{
-			printf("sur mal\n");
+			//printf("sur mal\n");
 			return (1);
 		}
 		i++;
 	}
-	printf("sur bien\n");
+	//printf("sur bien\n");
 	return (0);
 }
 
@@ -177,18 +177,19 @@ int is_out(char **map, int i, int j)
 			|| (!map[j - 1][i] || map[j - 1][i] == ' ')
 			|| (!map[j + 1][i] || map[j + 1][i] == ' '))
 		{
-			printf("%c", map[j][i]);
+			//printf("%c", map[j][i]);
 			if (map[j][i] != '1')
 			{
-				printf("agujero en %d,%d\n", j, i);
+				//printf("agujero en %d,%d\n", j, i);
 				return (1);
 			}
 		}
-		else
-			printf("-");
-		}
-	else
-		printf(" ");
+		//else
+			//printf("-");
+		//	(void)map;
+	}
+	//else
+		//printf(" ");
 	return (0);
 }
 
@@ -211,7 +212,7 @@ int	check_gaps(char **map)
 				return (1);
 			i++;
 		}
-		printf("\n");
+		//printf("\n");
 		j++;
 	}
 	return (0);
@@ -225,9 +226,6 @@ int	check_map(char **map, int *line_len)
 	width = get_length(map);
 	height = get_height(map);
 	//print_map2(map);
-/* 	if (check_north(map, width, line_len)
-		|| check_south(map, width, height, line_len) || check_west(map)
-		|| check_east(map, line_len) || check_gaps(map)) */
 	if (check_north(map, width, line_len)
 		|| check_south(map, height, width) || check_west(map)
 		|| check_east(map, line_len) || check_gaps(map))
