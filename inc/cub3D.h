@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/19 15:15:21 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:19:48 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
 int		check(t_cub *cub);
 int		check_color(t_cub *cub, char *color, char *type);
+int		check_gaps(char **map);
 int		check_map(char **map, int *line_len);
 int		check_single(char **map, int *line_len);
 int		check_textures(t_cub *cub);

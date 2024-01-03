@@ -6,12 +6,13 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:01 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/19 16:43:35 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:16:22 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
+/*
 void	print_map2(char **map)
 {
 	int	width;
@@ -33,6 +34,7 @@ void	print_map2(char **map)
 		printf("\n");
 	}
 }
+*/
 
 void	print_map(t_map *map)
 {
