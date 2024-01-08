@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/12/18 20:22:13 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:39:20 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	pos = set_pos(cub);
 	cub->pos_char = pos;
 	set_dir(&cub->dir, pos, cub);
-	cub->m = 0.20;
-	cub->r = 0.10;
+	cub->m = 0.10;
+	cub->r = 0.05;
 	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
 	set_h_w(cub->n, cub->n_w, cub->n_h);
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);

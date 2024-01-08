@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:32:58 by jgravalo          #+#    #+#             */
-/*   Updated: 2024/01/02 15:35:35 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:39:09 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,9 @@ int	is_out(char **map, int i, int j)
 
 int	check_gaps(char **map)
 {
-	int	width;
-	int	height;
 	int	i;
 	int	j;
 
-	width = get_length(map);
-	height = get_height(map);
 	j = 1;
 	while (map[j + 1])
 	{
