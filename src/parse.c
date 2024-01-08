@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:11 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:42:02 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/08 13:32:11 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,64 @@ static int	count_list(t_map *map)
 	return (c);
 }
 
+static void	element_aux(char **path, char **split, int *flag, int type)
+{
+	printf("type = %d, %s\n", type, *path);
+	if (!(*path))
+	{	
+		(*flag)--;
+		*path = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+		return ;
+	}
+	*flag = 2;
+	//printf("dup\n");
+}
+
 static int	get_element(t_cub *cub, char *line)
 {
 	char	**split;
 	int		flag;
+	//int		rep;
 
-	flag = 0;
+	flag = 1;
+	//rep = 0;
 	split = ft_split(line, ' ');
-	if (ft_strcmp(split[0], "NO") == 0 && ++flag)
-		cub->n_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
-	else if (ft_strcmp(split[0], "SO") == 0 && ++flag)
-		cub->s_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
-	else if (ft_strcmp(split[0], "WE" ) == 0 && ++flag)
-		cub->w_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
-	else if (ft_strcmp(split[0], "EA") == 0 && ++flag)
-		cub->e_p = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
-	else if (ft_strcmp(split[0], "C") == 0 && ++flag)
-		cub->ceiling_color = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
-	else if (ft_strcmp(split[0], "F") == 0 && ++flag)
-		cub->floor_color = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
+	if (ft_strcmp(split[0], "NO") == 0)
+		element_aux(&cub->n_p, split, &flag, 0);
+	else if (ft_strcmp(split[0], "SO") == 0)
+		element_aux(&cub->s_p, split, &flag, 1);
+	else if (ft_strcmp(split[0], "WE") == 0)
+		element_aux(&cub->w_p, split, &flag, 2);
+	else if (ft_strcmp(split[0], "EA") == 0)
+		element_aux(&cub->e_p, split, &flag, 3);
+	else if (ft_strcmp(split[0], "C") == 0)
+		element_aux(&cub->ceiling_color, split, &flag, 4);
+	else if (ft_strcmp(split[0], "F") == 0)
+		element_aux(&cub->floor_color, split, &flag, 5);
 	ft_free_m(split);
-	if (flag)
-		return (0);
-	else
-		return (1);
+	//printf("flag es %d\n", flag);
+	return (flag);
 }
 
 static int	check_line(t_cub *cub, char *line, int fd)
 {
+	int	ret;
 	if (ft_strcmp(line, "\n") == 0)
 	{
 		free(line);
 		return (0);
 	}
-	if (get_element(cub, line) == 0)
+	ret = get_element(cub, line);
+	if (!ret)
 	{
 		free(line);
 		return (0);
+	}
+	if (ret == 2)
+	{
+		printf("duplicado\n");
+		free(line);
+		return (1);
 	}
 	if (get_map(cub, line, fd) == 0)
 		return (0);

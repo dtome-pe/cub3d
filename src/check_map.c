@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:19 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/03 05:45:54 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/08 13:36:27 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,11 +154,6 @@ int	check_map(char **map, int *line_len)
 		|| check_east(map, line_len) || check_gaps(map))
 	{
 		ft_printf(2, "Map is not enclosed by walls.\n");
-		return (1);
-	}
-	if (check_single(map, line_len))
-	{
-		ft_printf(2, "Map is not continuous.\n");
 		return (1);
 	}
 	return (0);

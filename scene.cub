@@ -3,8 +3,8 @@ SO ./textures/colorstone.xpm
 WE ./textures/eagle.xpm
 EA ./textures/bluewall.xpm
 NO ./textures/bloodwall.xpm
-F 0,100,0
 C 123,30,250
+F 0,100,0
 
 
                    111111111
