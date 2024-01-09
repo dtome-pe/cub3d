@@ -9,7 +9,7 @@ MINI_DIR 	= mlx
 MINI 		= $(MINI_DIR)/libmlx.a
 
 FILES		= main check_argv init parse parse_map utils_map free_cub check check_gaps \
-			  utils_print check_color check_map check_single check_map_aux game \
+			  utils_print check_color check_map check_single check_map_aux game utils_list \
 			  utils_vector check_textures keys utils_mlx floor_ceiling draw render
 
 SRC			= $(addprefix src/, $(addsuffix .c, $(FILES)))
@@ -31,10 +31,10 @@ CC			= gcc
 all: make_libft make_mini $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) inc/cub3D.h
-	$(CC) -g $(CFLAGS) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -Iinc $(OBJ) -o $(NAME)
+	$(CC) -g $(CFLAGS) $(MLXFLAGS) -L$(LIBFT_DIR) -lft -Iinc $(OBJ) -o $(NAME) $(FSANITIZE)
 
 $(OBJ_DIR)/%.o : src/%.c inc/cub3D.h Makefile | $(OBJ_DIR)
-	$(CC) -c $(CFLAGS) -Iinc $< -o $@
+	$(CC) -c $(CFLAGS) -Iinc $< -o $@ $(FSANITIZE)
 $(OBJ_DIR) :
 	mkdir -p $(OBJ_DIR)
 

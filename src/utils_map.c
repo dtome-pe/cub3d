@@ -6,35 +6,11 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:01 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/02 15:16:22 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:40:06 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-
-/*
-void	print_map2(char **map)
-{
-	int	width;
-	int	height;
-	int i;
-	int j;
-	
-	width = get_length(map);
-	height = get_height(map);
-	for (j = 0; j < height; j++)
-	{
-		for (i = 0; i < width; i++)
-		{
-			if (map[j][i])
-				printf("%c", map[j][i]);
-			else
-				printf(" ");
-		}
-		printf("\n");
-	}
-}
-*/
 
 void	print_map(t_map *map)
 {

@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/08 12:39:20 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:22:33 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_parse(t_cub *cub, char **argv)
 	cub->map_list = NULL;
 	cub->map = NULL;
 	cub->line_len = NULL;
+	cub->longest = 0;
 }
 
 static char	set_pos(t_cub *cub)

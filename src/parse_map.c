@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:31 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:41:56 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:52:51 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static int	bounce_map(t_cub *cub, char *line, int fd)
 			return (1);
 		}
 		ft_mapback(&cub->map_list, ft_mapnew(line));
+		if (ft_strlen(line) > cub->longest)
+			cub->longest = ft_strlen(line);
 		free(line);
 		free(no_nl);
 		line = get_next_line(fd);

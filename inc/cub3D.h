@@ -6,7 +6,7 @@
 /*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/02 15:19:48 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:27:32 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_cub
 	char	**map;
 	int		*line_len;
 	int		char_pos;
+	size_t	longest;
 
 	/*raycasting calculations*/
 	t_vec	pos;
@@ -183,6 +184,7 @@ t_map	*ft_mapnew(char *content);
 void	ft_mapback(t_map **lst, t_map *new);
 t_map	*ft_maplast(t_map *lst);
 void	ft_mapclear(t_map **lst);
+int		count_list(t_map *map);
 
 /*print utils*/
 void	print_cub(t_cub *cub);
