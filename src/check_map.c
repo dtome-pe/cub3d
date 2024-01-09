@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:19 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/09 18:19:45 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:49:22 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,16 +120,12 @@ static int	check_east(char **map, int *line_len)
 	return (0);
 } */
 
-
 static int	check_south(char **map, int height, int width)
 {
 	int	i;
 
 	i = 0;
-	printf("witdh = %d\n", width);
 	height--;
-	printf("last line = %s\n", map[height - 1]);
-	printf("last line = %s\n", map[height]);
 	while (i < width)
 	{
 		if (map[height][i] == '0' || is_pos(map[height][i]))
@@ -210,10 +206,12 @@ int	check_map(char **map, int *line_len)
 	height = get_height(map);
 	if (check_north(map, height, width)
 		|| check_south(map, height, width) || check_west(map, height, width)
-		|| check_east(map, height, width) || check_gaps(map))
+		|| check_east(map, height, width))
 	{
 		ft_printf(2, "Map is not enclosed by walls.\n");
 		return (1);
 	}
+	if (check_gaps(map))
+		return (1);
 	return (0);
 }

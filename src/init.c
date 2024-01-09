@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/09 17:22:33 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:33:52 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	init_parse(t_cub *cub, char **argv)
 	cub->floor_color = NULL;
 	cub->map_list = NULL;
 	cub->map = NULL;
+	cub->f_rgb = NULL;
+	cub->c_rgb = NULL;
 	cub->line_len = NULL;
 	cub->longest = 0;
 }
@@ -76,8 +78,7 @@ void	set_dir(t_vec *dir, char c, t_cub *cub)
 		vector(&cub->pl, 0.66, 0);
 	}
 }
-
-static void	set_h_w(t_img *img, int w, int h)
+void	set_h_w(t_img *img, int w, int h)
 {
 	img->w = w;
 	img->h = h;
@@ -93,12 +94,12 @@ void	init_game(t_cub *cub, t_mlx *mlx)
 	cub->m = 0.10;
 	cub->r = 0.05;
 	cub->n = mlx_xpm_file_to_image(mlx->mlx, cub->n_p, &cub->n_w, &cub->n_h);
-	set_h_w(cub->n, cub->n_w, cub->n_h);
 	cub->s = mlx_xpm_file_to_image(mlx->mlx, cub->s_p, &cub->s_w, &cub->s_h);
-	set_h_w(cub->s, cub->s_w, cub->s_h);
 	cub->w = mlx_xpm_file_to_image(mlx->mlx, cub->w_p, &cub->w_w, &cub->w_h);
-	set_h_w(cub->w, cub->w_w, cub->w_h);
 	cub->e = mlx_xpm_file_to_image(mlx->mlx, cub->e_p, &cub->e_w, &cub->e_h);
+	set_h_w(cub->n, cub->n_w, cub->n_h);
+	set_h_w(cub->s, cub->s_w, cub->s_h);
+	set_h_w(cub->w, cub->w_w, cub->w_h);
 	set_h_w(cub->e, cub->e_w, cub->e_h);
 	cub->n->addr = mlx_get_data_addr(cub->n,
 			&cub->n->bpp, &cub->n->line, &cub->n->endian);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_gaps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:32:58 by jgravalo          #+#    #+#             */
-/*   Updated: 2024/01/09 18:04:49 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:49:47 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,16 @@ int	is_out(char **map, int i, int j)
 			|| (!map[j - 1][i] || map[j - 1][i] == ' ')
 			|| (!map[j + 1][i] || map[j + 1][i] == ' '))
 		{
-			if (map[j][i] != '1')
+			if (map[j][i] == '0')
+			{
+				ft_printf(2, "Map is not enclosed by walls.\n");
 				return (1);
+			}
+			else if (is_pos(map[j][i]))
+			{
+				ft_printf(2, "Initial position is not enclosed by walls.\n");
+				return (1);
+			}
 		}
 	}
 	return (0);

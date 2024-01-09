@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/09 17:27:32 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:44:50 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ int		count_list(t_map *map);
 void	print_cub(t_cub *cub);
 void	print_vector(t_vec *vec);
 int		print_error(char *str);
+void	print_img_info(t_cub *cub);
 
 /*vector utils*/
 void	vector(t_vec *vec, double x, double y);
