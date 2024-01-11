@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/09 19:44:50 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:06:56 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ void	ft_mapback(t_map **lst, t_map *new);
 t_map	*ft_maplast(t_map *lst);
 void	ft_mapclear(t_map **lst);
 int		count_list(t_map *map);
+size_t	ft_padcpy(char *dst, const char *src, size_t dstsize);
 
 /*print utils*/
 void	print_cub(t_cub *cub);

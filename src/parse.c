@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:11 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/09 17:53:57 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:06:34 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,33 +72,6 @@ static int	check_line(t_cub *cub, char *line, int fd)
 	return (1);
 }
 
-static size_t	ft_strlcpyy(char *dst, const char *src, size_t dstsize)
-{
-	unsigned int	i;
-	unsigned int	c;
-
-	c = 0;
-	i = 0;
-
-	while (src[c] != '\0')
-		++c;
-	if (dstsize != 0)
-	{
-		while (src[i] != '\0' && i < (dstsize - 1))
-		{
-			dst[i] = src[i];
-			++i;
-		}
-		while (i < (dstsize - 1))
-		{
-			dst[i] = '\0';
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (c);
-}
-
 static	void	list_to_arr(t_cub *cub)
 {
 	t_map	*ptr;
@@ -113,7 +86,7 @@ static	void	list_to_arr(t_cub *cub)
 	{
 		//cub->map[i] = ft_strdup(ptr->line);
 		cub->map[i] = malloc(cub->longest + 1);
-		ft_strlcpyy(cub->map[i], ptr->line, cub->longest);
+		ft_padcpy(cub->map[i], ptr->line, cub->longest);
 		//cub->line_len[i] = ft_strlen(ptr->line);
 		ptr = ptr->next;
 		i++;

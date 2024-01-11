@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:06:26 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/09 19:33:52 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:04:41 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	set_dir(t_vec *dir, char c, t_cub *cub)
 		vector(&cub->pl, 0.66, 0);
 	}
 }
+
 void	set_h_w(t_img *img, int w, int h)
 {
 	img->w = w;

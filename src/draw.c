@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:16 by jgravalo          #+#    #+#             */
-/*   Updated: 2024/01/09 19:52:02 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:05:07 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ int	set_texture(char *addr, t_img *dir, t_cub *cub)
 	int	color;
 
 	color = 0;
-	addr += (dir->h * cub->text_y + cub->text_x) * 4;
-	color = char_to_int(addr[3], addr[2], addr[1], addr[0]);
+	if (cub->text_y <= 62)
+	{
+		addr += (dir->h * cub->text_y + cub->text_x) * 4;
+		color = char_to_int(addr[3], addr[2], addr[1], addr[0]);
+	}
 	return (color);
 }
 
@@ -54,7 +57,6 @@ static void	draw_line(t_cub *cub, int w, t_img *frame, t_img *dir)
 
 void	draw(t_cub *cub, int w, t_img *frame)
 {
-	//ft_printf(1, "%d\n", w);
 	if (cub->hit_direction == NORTH)
 		draw_line(cub, w, frame, cub->s);
 	else if (cub->hit_direction == SOUTH)
