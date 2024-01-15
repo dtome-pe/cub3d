@@ -3,35 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:11 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/15 13:41:20 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:18:59 by jgravalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-static void	element_aux(char **path, char **split, int *flag, int color)//, int type)
-{	
-	int	i;
+static void	element_aux(char **path, char **split,
+	int *flag, int color)//, int type)
+{
+	int		i;
+	char	*tmp;
 
-	i = 0;
-	if (!color)
+	if (!(*path))
 	{
-		if (!(*path))
+		(*flag)--;
+		if (!color || (color && !split[2]))
+			*path = ft_strdup(split[1]);
+		else
 		{
-			(*flag)--;
-			*path = ft_substr(split[1], 0, ft_strlen(split[1]) - 1);
-			return ;
+			i = 3;
+			*path = ft_strjoin(split[1], split[2]);
+			while (split[i])
+			{
+				tmp = ft_strjoin(*path, split[i]);
+				*path = ft_strdup(tmp);
+				free(tmp);
+				i++;
+			}
 		}
-		*flag = 2;
+		printf("path = <%s>\n", *path);
+		return ;
 	}
-	else
-	{
-		
-	}
-	
+	*flag = 2;
 }
 
 static int	get_element(t_cub *cub, char *line)
@@ -40,7 +47,7 @@ static int	get_element(t_cub *cub, char *line)
 	int		flag;
 
 	flag = 1;
-	split = ft_splitchr(line, " \t");
+	split = ft_splitchr(line, " \t\n");
 	if (ft_strcmp(split[0], "NO") == 0)
 		element_aux(&cub->n_p, split, &flag, 0);
 	else if (ft_strcmp(split[0], "SO") == 0)
