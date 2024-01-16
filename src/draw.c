@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:39:16 by jgravalo          #+#    #+#             */
-/*   Updated: 2024/01/11 16:05:07 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:19:04 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ int	set_texture(char *addr, t_img *dir, t_cub *cub)
 	int	color;
 
 	color = 0;
+	addr += (dir->h * cub->text_y + cub->text_x) * 4;
 	if (cub->text_y <= 62)
-	{
-		addr += (dir->h * cub->text_y + cub->text_x) * 4;
 		color = char_to_int(addr[3], addr[2], addr[1], addr[0]);
-	}
 	return (color);
 }
 
@@ -50,7 +48,8 @@ static void	draw_line(t_cub *cub, int w, t_img *frame, t_img *dir)
 		cub->text_y = (int)cub->text_pos & (dir->h - 1);
 		cub->text_pos += cub->step;
 		color = set_texture(dir->addr, dir, cub);
-		my_mlx_pixel_put(frame, w, y, color);
+		if (cub->text_y <= 62)
+			my_mlx_pixel_put(frame, w, y, color);
 		y++;
 	}
 }

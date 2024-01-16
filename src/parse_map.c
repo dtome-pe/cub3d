@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:31 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/09 17:52:51 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:33:38 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
-
-static int	pos_char(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	else
-		return (0);
-}
 
 static int	map_charset(t_cub *cub, char *line)
 {
@@ -36,24 +28,36 @@ static int	map_charset(t_cub *cub, char *line)
 		}
 		else if (pos_char(line[i]) && cub->char_pos)
 		{
-			ft_printf(2, "Only one initial position accepted.\n");
+			ft_printf(2, "Error.\nOnly one initial position accepted.\n");
 			return (1);
 		}
 		else
 		{
-			ft_printf(2, "Wrong character in map: %c.\n", line[i]);
+			ft_printf(2, "Error.\nWrong character in map: %c.\n", line[i]);
 			return (1);
 		}
 	}
 	return (0);
 }
 
-static int	check_elements(t_cub *cub)
+int	there_is_map(t_cub *cub)
+{
+	if (!cub->map_list)
+	{
+		ft_printf(2, "Error.\nThere is no map!\n");
+		return (1);
+	}
+	else
+		return (0);
+}
+
+int	check_elements(t_cub *cub)
 {
 	if (!cub->n_p || !cub->s_p
 		|| !cub->w_p || !cub->e_p
 		|| !cub->ceiling_color || !cub->floor_color)
 	{
+		ft_printf(2, "Error.\n");
 		ft_printf(2, "Wrong element order. (Map is not the last element,");
 		ft_printf(2, " or there are missing elements)\n");
 		return (1);
@@ -85,7 +89,7 @@ static int	bounce_map(t_cub *cub, char *line, int fd)
 	}
 	if (!cub->char_pos)
 	{
-		ft_printf(2, "A initial position is required.\n");
+		ft_printf(2, "Error.\nA initial position is required.\n");
 		return (1);
 	}
 	return (0);
@@ -97,7 +101,7 @@ int	get_map(t_cub *cub, char *line, int fd)
 
 	if (map)
 	{
-		ft_printf(2, "Wrong configuration in file.\n");
+		ft_printf(2, "Error.\nWrong configuration in file.\n");
 		return (1);
 	}
 	if (check_elements(cub))

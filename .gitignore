@@ -1,2 +1,6 @@
 mlx_linux
 obj
+.vscode
+.gitignore
+cub3D
+bad_maps.sh

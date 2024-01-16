@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:10 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:40:47 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:29:38 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_open(char *path)
 
 static int	texture_error(char *texture)
 {
-	ft_printf(2, "%s texture could not be opened or found.\n", texture);
+	ft_printf(2, "Error.\n%s texture could not be opened or found.\n", texture);
 	return (1);
 }
 
@@ -42,7 +42,9 @@ int	check_textures(t_cub *cub)
 	rtn = check_open(cub->w_p);
 	if (rtn)
 		return (texture_error("West"));
+	printf("%s\n", cub->e_p);
 	rtn = check_open(cub->e_p);
+	printf("rtn is %d\n", rtn);
 	if (rtn)
 		return (texture_error("East"));
 	return (0);

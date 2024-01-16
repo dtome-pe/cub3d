@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/11 16:06:56 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:20:15 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,12 @@ typedef struct s_cub
 void	init_parse(t_cub *cub, char **argv);
 
 int		check_argv(int argc, char **argv);
+int		check_extension(char *file, char *extension);
+int		check_elements(t_cub *cub);
 int		parse(t_cub *cub);
 int		get_map(t_cub *cub, char *line, int fd);
+int		there_is_map(t_cub *cub);
+int		pos_char(char c);
 int		check(t_cub *cub);
 int		check_color(t_cub *cub, char *color, char *type);
 int		check_gaps(char **map);

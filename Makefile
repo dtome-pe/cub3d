@@ -4,7 +4,7 @@ LIBFT_DIR	= libft
 
 LIBFT 		= $(LIBFT_DIR)/libft.a
 
-MINI_DIR 	= mlx
+MINI_DIR 	= mlx_macos
 
 MINI 		= $(MINI_DIR)/libmlx.a
 
@@ -22,7 +22,7 @@ OBJ_DIR 	= obj
 
 CFLAGS		= -Wall -Werror -Wextra -I inc/
 
-MLXFLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS	= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
 
 FSANITIZE	= -fsanitize=address
 

@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:52:41 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/15 13:34:03 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:30:31 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,15 @@ int	check_color(t_cub *cub, char *color, char *type)
 
 	flag = 0;
 	if (contains_value_charset(color))
-		return (print_error("Wrong characters in color values."));
+		return (print_error("Error.\nWrong characters in color values."));
 	split = ft_split(color, ',');
 	if (count_m(split) != 3)
-		return (print_error("Wrong number of color values."));
+		return (print_error("Error.\nWrong number of color values."));
 	i = 0;
 	while (split[i] && !flag)
 	{
 		if (check_number(ft_atoi(split[i])) && ++flag)
-			ft_printf(2, "Wrong color value inserted.\n");
+			ft_printf(2, "Error.\nWrong color value inserted.\n");
 		i++;
 	}
 	save_values(cub, split, type);

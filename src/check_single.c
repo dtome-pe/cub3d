@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_single.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:49 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:40:23 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:29:45 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_visited(char **new)
 		{
 			if (new[row][col] != ' ' && new[row][col] != 'V')
 			{
-				ft_printf(2, "Map is not continuous.\n");
+				ft_printf(2, "Error.\nMap is not continuous.\n");
 				return (1);
 			}
 			col++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theonewhoknew <theonewhoknew@student.42    +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 09:06:10 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/05/04 13:32:24 by theonewhokn      ###   ########.fr       */
+/*   Updated: 2024/01/16 11:35:24 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,3 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-/*
-
-#include <stdio.h>
-#include <ctype.h>
-
-int main(void)
-{
-    char c = '2';
-
-    printf("%d", ft_isdigit(c));
-}
-*/

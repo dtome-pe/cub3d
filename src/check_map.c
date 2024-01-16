@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:19 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/15 13:32:41 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:30:12 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ static int	check_south(char **map, int height, int width)
 	while (i < width)
 	{
 		if (map[height][i] == '0' || is_pos(map[height][i]))
-		{
-			printf("sur mal\n");
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -39,11 +36,7 @@ static int	check_west(char **map, int height, int width)
 	while (i < height - 1)
 	{
 		if (map[i][0] == '0' || is_pos(map[i][0]))
-		{
-			printf("map[%d][%d] = <%c>\n", 0, i, map[0][i]);
-			printf("oeste mal\n");
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -58,11 +51,7 @@ static int	check_east(char **map, int height, int width)
 	while (i < height - 1)
 	{
 		if (map[i][width] == '0' || is_pos(map[i][width]))
-		{
-			printf("map[%d][%d] = <%c>\n", 0, i, map[0][i]);
-			printf("este mal\n");
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -77,11 +66,7 @@ static int	check_north(char **map, int height, int width)
 	while (i < width)
 	{
 		if ((map[0][i] == '0') || is_pos(map[0][i]))
-		{
-			printf("map[%d][%d] = <%c>\n", 0, i, map[0][i]);
-			printf("norte mal\n");
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -100,7 +85,7 @@ int	check_map(char **map, int *line_len)
 		|| check_south(map, height, width) || check_west(map, height, width)
 		|| check_east(map, height, width))
 	{
-		ft_printf(2, "Map is not enclosed by walls.\n");
+		ft_printf(2, "Error.\nMap is not enclosed by walls.\n");
 		return (1);
 	}
 	if (check_gaps(map))

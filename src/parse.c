@@ -3,39 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:56:11 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/15 16:18:59 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:33:22 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#include <string.h>
+#include <errno.h>
 
 static void	element_aux(char **path, char **split,
-	int *flag, int color)//, int type)
+	int *flag, int color)
 {
-	int		i;
-	char	*tmp;
-
-	if (!(*path))
+	if (ft_count_arr(split) != 2
+		|| (!color && check_extension(split[1], ".xpm")))
+	{
+		(*flag)++;
+		return ;
+	}
+	else if (!(*path))
 	{
 		(*flag)--;
-		if (!color || (color && !split[2]))
-			*path = ft_strdup(split[1]);
-		else
-		{
-			i = 3;
-			*path = ft_strjoin(split[1], split[2]);
-			while (split[i])
-			{
-				tmp = ft_strjoin(*path, split[i]);
-				*path = ft_strdup(tmp);
-				free(tmp);
-				i++;
-			}
-		}
-		printf("path = <%s>\n", *path);
+		*path = ft_strdup(split[1]);
 		return ;
 	}
 	*flag = 2;
@@ -68,20 +59,15 @@ static int	check_line(t_cub *cub, char *line, int fd)
 {
 	int	ret;
 
-	if (ft_strcmp(line, "\n") == 0)
-	{
-		free(line);
-		return (0);
-	}
 	ret = get_element(cub, line);
-	if (!ret)
+	if (!ft_strcmp(line, "\n") || !ret)
 	{
 		free(line);
 		return (0);
 	}
 	if (ret == 2)
 	{
-		ft_printf(2, "duplicated element\n");
+		ft_printf(2, "Error.\nDuplicated or wrong element.\n");
 		free(line);
 		return (1);
 	}
@@ -96,16 +82,12 @@ static	void	list_to_arr(t_cub *cub)
 	int		i;
 
 	cub->map = malloc(sizeof (char *) * ((count_list(cub->map_list)) + 1));
-	//ft_printf(1, "longest es %d\n", cub->longest);
-	//cub->line_len = malloc(sizeof (int) * (count_list(cub->map_list)));
 	ptr = cub->map_list;
 	i = 0;
 	while (ptr)
 	{
-		//cub->map[i] = ft_strdup(ptr->line);
 		cub->map[i] = malloc(cub->longest + 1);
 		ft_padcpy(cub->map[i], ptr->line, cub->longest);
-		//cub->line_len[i] = ft_strlen(ptr->line);
 		ptr = ptr->next;
 		i++;
 	}
@@ -127,6 +109,8 @@ int	parse(t_cub *cub)
 	}
 	free(line);
 	close(fd);
+	if (check_elements(cub) || there_is_map(cub))
+		return (1);
 	list_to_arr(cub);
 	return (0);
 }

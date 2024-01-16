@@ -1,11 +1,10 @@
 
-WE ./textures/eagle.xpm
-C 123,30,250
-							SO ./textures/colorstone.xpm
+WE ./textures/colorstone.xpm
+C 123,30, 250 
+							SO ./textures/eagle.xpm
 EA ./textures/bluewall.xpm
 NO ./textures/bloodwall.xpm
-F 0,100,0
-
+F 123,30,230
 
                    111111111
                    100000001
