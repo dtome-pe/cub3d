@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgravalo <jgravalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:51:28 by dtome-pe          #+#    #+#             */
-/*   Updated: 2023/11/21 17:41:28 by jgravalo         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:53:01 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check(t_cub *cub)
 			ft_atoi(cub->c_rgb[1]), ft_atoi(cub->c_rgb[2]));
 	cub->f_color = create_trgb(0, ft_atoi(cub->f_rgb[0]),
 			ft_atoi(cub->f_rgb[1]), ft_atoi(cub->f_rgb[2]));
-	if (check_map(cub->map, cub->line_len))
+	if (check_map(cub->map))
 		return (1);
 	if (check_textures(cub))
 		return (1);

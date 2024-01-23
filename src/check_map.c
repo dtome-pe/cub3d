@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:53:19 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/16 19:30:12 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:52:44 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,11 @@ static int	check_north(char **map, int height, int width)
 	return (0);
 }
 
-int	check_map(char **map, int *line_len)
+int	check_map(char **map)
 {
 	int	width;
 	int	height;
 
-	(void)line_len;
-	ft_print_m(map);
 	width = get_length(map);
 	height = get_height(map);
 	if (check_north(map, height, width)

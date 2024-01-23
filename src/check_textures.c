@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:54:10 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/16 19:29:38 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:53:38 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	check_textures(t_cub *cub)
 	rtn = check_open(cub->w_p);
 	if (rtn)
 		return (texture_error("West"));
-	printf("%s\n", cub->e_p);
 	rtn = check_open(cub->e_p);
-	printf("rtn is %d\n", rtn);
 	if (rtn)
 		return (texture_error("East"));
 	return (0);

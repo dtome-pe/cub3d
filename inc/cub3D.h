@@ -6,7 +6,7 @@
 /*   By: dtome-pe <dtome-pe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:22:25 by dtome-pe          #+#    #+#             */
-/*   Updated: 2024/01/16 19:20:15 by dtome-pe         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:52:51 by dtome-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int		pos_char(char c);
 int		check(t_cub *cub);
 int		check_color(t_cub *cub, char *color, char *type);
 int		check_gaps(char **map);
-int		check_map(char **map, int *line_len);
+int		check_map(char **map);
 int		check_single(char **map, int *line_len);
 int		check_textures(t_cub *cub);
 int		get_length(char **map);

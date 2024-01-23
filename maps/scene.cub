@@ -1,6 +1,6 @@
 
 WE ./textures/colorstone.xpm
-C 123,30, 250 
+C 123,30,250 
 							SO ./textures/eagle.xpm
 EA ./textures/bluewall.xpm
 NO ./textures/bloodwall.xpm
