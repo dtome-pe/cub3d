@@ -4,7 +4,7 @@ A raytracing implementation in C.
 
 ## Description
 
-This program parses a 2D map and renders a 3D world using raytracing algorithms, takes basic key handling for movement and rotation and handles basic texture management with the basic grapihc engine Minilibx. 
+This program parses a 2D map and renders a 3D world using raytracing algorithms, takes basic key handling for movement and rotation and handles basic texture management with the Minilibx graphic engine.
 
 ## Installation
 
@@ -17,31 +17,12 @@ make
 ## Usage
 
 ```bash
-./webserv
+./cub3d [map file]
 
-# it calls the default server at ./conf/default.conf
-
-./webserv [configuration file]
-
-# another configuration file specified
-```
-Then just access the server via curl or browser at the port specified in the "Listen" directive, and you will be served, considering that the "Root" directive points to the server root.
-
-For example, if:
+# it will render the map specified
 
 ```
-server {
-     listen 8888;
-     root .;
-}
-
-```
-
-Doing a:
-```
-curl 127.0.0.1:8888
-```
-Will make a GET request to the root of the server, and will receive an index page or an error if no index page was found.
+The program will open and you'll be able to move through the world with the 
 
 ## Resources
 
