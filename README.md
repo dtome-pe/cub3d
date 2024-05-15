@@ -26,6 +26,6 @@ The program will open and you'll be able to move through the world with the
 
 ## Resources
 
-This tutorial helped me to get into the implementation right away and to understand the maths behind the project:
+This tutorial helped me to get into the implementation right away and start tackling the maths behind the project:
 
 [Lode's Computer Graphics Tutorial](https://lodev.org/cgtutor/raycasting.html)
