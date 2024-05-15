@@ -28,4 +28,4 @@ The program will open and you'll be able to move through the world with the
 
 This tutorial helped me to get into the implementation right away and to understand the maths behind the project:
 
-[Lode's Computer Graphics Tutorial]([https://harm-smits.github.io/42docs/projects/cub3d](https://lodev.org/cgtutor/raycasting.html))
+[Lode's Computer Graphics Tutorial](https://lodev.org/cgtutor/raycasting.html)
