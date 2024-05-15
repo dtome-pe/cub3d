@@ -1,9 +1,3 @@
-# Cub3d
-
-A raytracing implementation in C.
-
-## Description
-
 This program parses a 2D map and renders a 3D world using raytracing algorithms, takes basic key handling for movement and rotation and handles basic texture management with the Minilibx graphic engine.
 
 ## Installation
